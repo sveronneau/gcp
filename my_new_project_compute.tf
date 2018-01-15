@@ -18,8 +18,17 @@ variable "node_count" {
   default = "5"
 }
 
+resource "google_compute_disk" "seconddisk" {
+    count   = "${var.node_count}"
+    project = "${google_project_services.project.project}"
+    name    = "compute-datadisk-${count.index}"
+    type    = "pd-standard"
+    zone    = "${data.google_compute_zones.available.names[0]}"
+    size    = "5"
+}
+
 resource "google_compute_instance" "default" {
-  count        = "5"
+  count        = "${var.node_count}"
   project      = "${google_project_services.project.project}"
   zone         = "${data.google_compute_zones.available.names[0]}"
   name         = "compute-node-${count.index}"
@@ -33,6 +42,11 @@ resource "google_compute_instance" "default" {
     }
   }
 
+  attached_disk {
+      disk = "compute-datadisk-${count.index}"
+#"${google_compute_disk.seconddisk.name}"
+  }
+  
   network_interface {
     //network       = "foobar"
     subnetwork    = "subnet-na-east1"
