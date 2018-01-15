@@ -14,10 +14,15 @@
 
 data "google_compute_zones" "available" {}
 
+variable "node_count" {
+  default = "5"
+}
+
 resource "google_compute_instance" "default" {
+  count        = "5"
   project      = "${google_project_services.project.project}"
   zone         = "${data.google_compute_zones.available.names[0]}"
-  name         = "tf-compute-3"
+  name         = "compute-node-${count.index}"
   machine_type = "f1-micro"
 
   tags = ["foo", "bar"]
@@ -52,5 +57,5 @@ resource "google_compute_instance" "default" {
 }
 
 output "instance_id" {
-  value = "${google_compute_instance.default.self_link}"
+  value = "${google_compute_instance.default.*.self_link}"
 }
