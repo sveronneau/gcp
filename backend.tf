@@ -1,7 +1,7 @@
 terraform {
  backend "gcs" {
-   bucket  = "stacy-terraform-admin"
+   bucket  = "<user>-terraform-admin"
    path    = "/terraform.tfstate"
-   project = "stacy-terraform-admin"
+   project = "<user>-terraform-admin"
  }
 }
