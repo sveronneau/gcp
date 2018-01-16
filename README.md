@@ -11,6 +11,6 @@ gcp_tf_prep.sh	--- Prep TF for GCP usage -- Admin project, service account....
 
 my_new_project.tf	--- Project creation
 
-my_new_project_compute.tf	--- Setup compute with multiple instances and external disks with a custom VPC
+my_new_project_compute.tf	--- Setup compute with multiple instances and external disks with a custom VPC and firewall rule
 
 my_new_project_vpc.tf --- Setup new VPC
