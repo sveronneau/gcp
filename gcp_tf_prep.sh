@@ -1,7 +1,7 @@
 #!/bin/bash
 # 
-export TF_VAR_org_id=907565456311
-export TF_VAR_billing_account=0104BF-0E14A9-484586
+export TF_VAR_org_id=<org_Id>
+export TF_VAR_billing_account=<billing_account>
 export TF_ADMIN=${USER}-terraform-admin
 export TF_CREDS=~/.config/gcloud/terraform-admin.json
 #
@@ -50,6 +50,5 @@ export GOOGLE_APPLICATION_CREDENTIALS=${TF_CREDS}
 export GOOGLE_PROJECT=${TF_ADMIN}
 #
 # initialize the backend:
-
 terraform init
 #
