@@ -28,10 +28,10 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  attached_disk {
-      disk = "compute-datadisk-${count.index}"
+#  attached_disk {
+#      disk = "compute-datadisk-${count.index}"
 #"${google_compute_disk.seconddisk.name}"
-  }
+#  }
   
   network_interface {
     //network       = "foobar"
