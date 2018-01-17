@@ -28,11 +28,11 @@ resource "google_compute_instance" "default" {
     }
   }
 
-#  attached_disk {
-#      disk = "compute-datadisk-${count.index}"
-#"${google_compute_disk.seconddisk.name}"
-#  }
-  
+  attached_disk {
+    source      = "${element(google_compute_disk.seconddisk.*.self_link, count.index)}"
+    device_name = "seconddisk"
+  }
+
   network_interface {
     //network       = "foobar"
     subnetwork    = "subnet-na-east1"
@@ -58,4 +58,8 @@ resource "google_compute_instance" "default" {
 
 output "instance_id" {
   value = "${google_compute_instance.default.*.self_link}"
+}
+
+output "public_ip" {
+   value = ["${google_compute_instance.default.*.network_interface.0.access_config.0.assigned_nat_ip}"]
 }
