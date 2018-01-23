@@ -1,4 +1,4 @@
 # gcp/packer
-Packer script for image backing on GCP
+Packer script for image baking on GCP
 
-V3 is
+V3 is the most flexible version.
