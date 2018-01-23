@@ -1,0 +1,29 @@
+{
+  "variables": {
+        "gcloud_account_json": "{{env `HOME`}}/.gcloud/account.json"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "account_file": "{{user `gcloud_account_json`}}",
+      "project_id": "gcp-ca-prep",
+      "ssh_username":"ubuntu",
+      "source_image": "ubuntu-1404-trusty-v20160602",
+      "zone": "northamerica-northeast1-a",
+      "image_name": "packer-demo-{{timestamp}}"
+    }
+  ],
+  "provisioners": [
+      {
+           "type": "shell",
+           "inline": [
+                "sudo apt-get clean",
+                "sudo apt-get update",
+                "sudo apt-get -y upgrade",
+                "sudo apt-get -y install nginx",
+                "echo 'This instance was provisioned by Packer' > /usr/share/nginx/html/index.html"
+           ]
+      }
+
+  ]
+}
