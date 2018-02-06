@@ -9,7 +9,7 @@ If you are running Terraform inside a GCP instance running from a supported imag
 
 Step 1
 - Create service account in your GCP project
----- IAM & admin / Service accounts / Create Service Account
+-- IAM & admin / Service accounts / Create Service Account
 ------- Roles: Compute Instance Admin (v1) / Service Account Admin / Storage Object Admin
 ------- Options / Create key / Download JSON file
 
