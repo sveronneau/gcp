@@ -7,7 +7,7 @@ Requirements: GCP project and Project wide SSH Key
 
 If you are running Terraform inside a GCP instance running from a supported image, go to step 2
 
-**Step 1 - 1 Create service account in your GCP project**
+**Step 1 - Create service account in your GCP project**
 * IAM & admin / Service accounts / Create Service Account
 -      Roles: Compute Instance Admin (v1) / Service Account Admin / Storage Object Admin
 -      Options / Create key / Download JSON file
@@ -17,11 +17,11 @@ If you are running Terraform inside a GCP instance running from a supported imag
 * Clone GitHub Repo - https://github.com/sveronneau/gcp/tree/master/consul
 * Adapt consul.tf to fit your GCP identity file (or not), project, zone and Consul node count
 
-**Step 3**
-* Enable GCP provider
--     terraform init
-* Run script
--     terraform apply
+**Step 3 - Enable GCP provider**
+* terraform init
+
+**Step 4 - Run script**
+* terraform apply
 * SSH to your node and a Consul dev process will be there and can be checked with (consul info)
 
-Bingo!
+**Bingo!**
