@@ -14,14 +14,16 @@ If you are running Terraform inside a GCP instance running from a supported imag
 
 **Step 2 - Download and Install Terraform**
 * https://www.terraform.io/downloads.html
-* Clone GitHub Repo - https://github.com/sveronneau/gcp/tree/master/consul
-* Adapt consul.tf to fit your GCP identity file (or not), project, zone and Consul node count
 
-**Step 3 - Enable GCP provider**
+**Step 3 - Clone repo**
+* Clone GitHub Repo - https://github.com/sveronneau/gcp/tree/master/consul
+
+**Step 4 - Enable GCP provider**
+* Adapt consul.tf to fit your GCP identity file (or not), project, zone and Consul node count
 * terraform init
 
-**Step 4 - Run script**
+**Step 5 - Run script**
 * terraform apply
-* SSH to your node and a Consul dev process will be there and can be checked with (consul info)
+* SSH to your node via GCP UI SSH and a Consul dev process will be there and can be checked with (consul info)
 
 **Bingo!**
