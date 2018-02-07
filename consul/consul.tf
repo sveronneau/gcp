@@ -8,7 +8,7 @@ provider "google" {
 
 resource "google_compute_instance" "ansible" {
   count        = "1"
-  project      = "terraform-sandbox-194417"
+  project      = "your_gcp_project"
   zone         = "northamerica-northeast1-a"
   name         = "consul-node-${count.index}"
   machine_type = "f1-micro"
