@@ -9,6 +9,7 @@ provider "google" {
 resource "google_container_cluster" "primary" {
   name               = "my_little_cluster"
   zone               = "northamerica-northeast1-a"
+  node_version       = "${data.google_container_engine_versions.northeast1a.latest_node_version}"
   initial_node_count = 3
 
 #  additional_zones = [
