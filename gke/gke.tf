@@ -1,13 +1,13 @@
 // Configure the Google Cloud provider
 
 provider "google" {
-  credentials = "${file("/home/stacy/TF/GKE/account.json")}"
-  project = "terraform-sandbox-194417"
+  credentials = "${file("/path_to/your_sa_file.json")}"
+  project = "your_project"
   region  = "northamerica-northeast1"
 }
 
 resource "google_container_cluster" "primary" {
-  name               = "marcellus-wallace"
+  name               = "my_little_cluster"
   zone               = "northamerica-northeast1-a"
   initial_node_count = 3
 
@@ -17,8 +17,8 @@ resource "google_container_cluster" "primary" {
 #  ]
 
   master_auth {
-    username = "mr.yoda"
-    password = "adoy.r23r43dsf524m"
+    username = "your_username"
+    password = "your_password"
   }
 
   node_config {
