@@ -16,6 +16,7 @@ resource "google_container_cluster" "primary" {
 #    "northamerica-northeast1-c",
 #  ]
 
+// DONT DO/USE THIS IN PROD  
   master_auth {
     username = "your_username"
     password = "your_password"
