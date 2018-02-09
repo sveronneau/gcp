@@ -3,7 +3,7 @@
 provider "google" {
   credentials = "${file("gcp_service_account.json")}"
   project = "your_gcp_project"
-  region  = "northamerica-notheast1"
+  region  = "northamerica-northeast1"
 }
 
 resource "google_compute_instance" "ansible" {
