@@ -10,7 +10,7 @@ resource "google_compute_instance_template" "instance_template" {
   project = "your_gcp_project"
   region      = "northamerica-northeast1"
 
-  tags = ["foo", "bar"]
+  tags = ["nginx"]
 
   labels = {
     environment = "dev"
@@ -64,4 +64,26 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
   zone               = "northamerica-northeast1-a"
   project            = "your_gcp_project"
   target_size        = "3"
+
+  named_port {
+    name = "http"
+    port = 80
+  }
+
+  named_port {
+    name = "https"
+    port = 443
+  }
+}
+
+resource "google_compute_firewall" "default" {
+  name    = "tf-allow-http-https"
+  network = "default"
+  project = "your_gcp_project"
+
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
+  target_tags = ["nginx"]
 }
