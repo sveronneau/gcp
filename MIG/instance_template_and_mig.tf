@@ -5,9 +5,9 @@ provider "google" {
 }
 
 resource "google_compute_instance_template" "instance_template" {
-  name_prefix = "instance-template-"
+  name_prefix = "nginx-"
   description = "This template is used to create nginx server instances."
-  project = "${google_project_services.project.project}"
+  project = "your_gcp_project"
   region      = "northamerica-northeast1"
 
   tags = ["foo", "bar"]
@@ -62,6 +62,6 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
   instance_template  = "${google_compute_instance_template.instance_template.self_link}"
   base_instance_name = "instance-group-manager"
   zone               = "northamerica-northeast1-a"
-  project            = "${google_project_services.project.project}"
+  project            = "your_gcp_project"
   target_size        = "3"
 }
