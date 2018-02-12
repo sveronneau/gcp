@@ -1,20 +1,21 @@
 {
   "variables": {
         "gcloud_account_json": "{{env `HOME`}}/.gcloud/account.json"
+        "gcloud_project_id": "your_project_id"
   },
   "builders": [
     {
       "type": "googlecompute",
       "account_file": "{{user `gcloud_account_json`}}",
-      "project_id": "gcp-ca-prep",
+      "project_id": "{{user `gcloud_project_id`}}",
       "ssh_username":"ubuntu",
       "source_image_family": "ubuntu-1604-lts",
-      "image_name":"packer-base-image-name-{{timestamp}}",
+      "image_name":"packer-ubuntu-nginx",
       "zone": "northamerica-northeast1-a",
       "preemptible":"true",
       "machine_type":"n1-standard-8",
       "on_host_maintenance":"TERMINATE",
-      "image_family":"your_family_name"
+      "image_family":"nginx"
     }
   ],
   "provisioners": [
