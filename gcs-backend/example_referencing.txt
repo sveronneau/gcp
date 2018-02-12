@@ -4,7 +4,7 @@ data "terraform_remote_state" "foo" {
   backend = "gcs"
   config {
     credentials = "path_to_your_json_file"
-    bucket  = "terraform-state"
-    prefix  = "prod"
+    bucket  = "your_bucket_name"
+    prefix  = "your_prefix"
   }
 }
