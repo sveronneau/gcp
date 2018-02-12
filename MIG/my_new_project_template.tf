@@ -21,7 +21,7 @@ resource "google_compute_instance_template" "instance_template" {
 
   // Create a new boot disk from an image
   disk {
-    source_image = "ubuntu-1604-xenial-v20180122"
+    source_image_family = "ubuntu/ubuntu-1604-lts"
     auto_delete  = true
     boot         = true
   }
@@ -44,7 +44,7 @@ resource "google_compute_instance_template" "instance_template" {
   service_account {
     scopes = ["userinfo-email", "compute-ro", "storage-ro"]
   }
-  
+
   lifecycle {
     create_before_destroy = true
   }
@@ -57,5 +57,5 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
   base_instance_name = "instance-group-manager"
   zone               = "northamerica-northeast1-a"
   project            = "${google_project_services.project.project}"
-  target_size        = "1"
+  target_size        = "3"
 }
