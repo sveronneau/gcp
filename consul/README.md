@@ -1,5 +1,5 @@
 # gcp/consul
-Terraform and Ansible script to deploy Consul within a GCP instance.
+Terraform and Ansible script to deploy Consul 1.0.6 within a GCP instance.
 
 Requirements: GCP project and Project wide SSH Key
 
