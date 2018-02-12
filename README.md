@@ -1,5 +1,5 @@
 # gcp
-Collection of Packer, Terraform, Consul, Ansible and other GCP related scripts.
+Collection of Packer, Terraform, Consul, Ansible and other GCP related sample scripts.
 
 * consul
 * Create Master TF Project and SA
