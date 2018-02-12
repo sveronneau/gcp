@@ -1,12 +1,13 @@
 {
   "variables": {
         "gcloud_account_json": "{{env `HOME`}}/.gcloud/account.json"
+        "gcloud_project_id": "your_project_id"
   },
   "builders": [
     {
       "type": "googlecompute",
       "account_file": "{{user `gcloud_account_json`}}",
-      "project_id": "gcp-ca-prep",
+      "project_id": "{{user `gcloud_project_id`}}",
       "ssh_username":"ubuntu",
       "source_image": "ubuntu-1404-trusty-v20180122",
       "zone": "northamerica-northeast1-a",
