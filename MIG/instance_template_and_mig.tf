@@ -25,18 +25,18 @@ resource "google_compute_instance_template" "instance_template" {
     on_host_maintenance = "MIGRATE"
   }
 
-  // Create a new boot disk from an image
-#  disk {
-#    source_image = "ubuntu-1604-lts"
-#    auto_delete  = true
-#    boot         = true
-#  }
-
-  // Use an existing disk resource (Maybe image built by PACKER script)
+  // Create a new boot disk from an image (Lets use one created by Packer)
   disk {
-    source      = "foo_existing_disk"
+    source_image = "nginx"
+    auto_delete  = true
+    boot         = true
+  }
+
+  // Use an existing disk resource in RO mode since this is a MIG
+  disk {
+    source      = "my_existing_disknginx"
     auto_delete = false
-    boot        = true
+    boot        = false
   }
 
   network_interface {
