@@ -20,18 +20,18 @@ resource "google_compute_instance_template" "instance_template" {
   }
 
   // Create a new boot disk from an image
-  disk {
-    source_image_family = "ubuntu/ubuntu-1604-lts"
-    auto_delete  = true
-    boot         = true
-  }
-
-  // Use an existing disk resource
 #  disk {
-#    source      = "foo_existing_disk"
-#    auto_delete = false
-#    boot        = false
+#    source_image = "ubuntu-1604-lts"
+#    auto_delete  = true
+#    boot         = true
 #  }
+
+  // Use an existing disk resource (Maybe image built by PACKER script)
+  disk {
+    source      = "foo_existing_disk"
+    auto_delete = false
+    boot        = true
+  }
 
   network_interface {
     network = "default"
