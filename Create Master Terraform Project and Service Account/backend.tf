@@ -1,4 +1,4 @@
-// GCS backend for tfstae your_sa_file
+// GCS backend for .tfstate file
 
 terraform {
  backend "gcs" {

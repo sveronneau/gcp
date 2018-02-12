@@ -1,5 +1,6 @@
 #!/bin/bash
 #
+# Enter your GCP info in here
 export TF_VAR_org_id=your_org_id
 export TF_VAR_billing_account=your_billing_account_id
 export TF_ADMIN=your_user-terraform-admin
