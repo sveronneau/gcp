@@ -1,4 +1,4 @@
-# gcp/Create Master Terraform Project and Service Account
-Shell and Terraform script to create an admin project for Terraform and also create a service account for automation of future GCP related tasks.
+# gcp/vpc
+Terraform script to create a custom VCP and define firewall rules attached to it.
 
 Scripts uses a GCP service account and a JSON file with your account token and ENV VARS
