@@ -27,7 +27,7 @@ resource "google_compute_instance_template" "instance_template" {
 
   // Create a new boot disk from an image (Lets use one created by Packer)
   disk {
-    source_image = "nginx"
+    source_image = "nginx" //image family tag works here
     auto_delete  = true
     boot         = true
   }
