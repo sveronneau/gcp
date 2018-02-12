@@ -1,4 +1,8 @@
-# gcp/gce
-Terraform script sample to deploy 5 instances with a second disk attached to it and installs traceroute in them ounce deployed.
+# gcp/gcs-backend
+Terraform script sample to enable GCS as a backend for tfstate file.
 
-Scripts uses a GCP service account and a JSON file with your account token and ENV VARS
+Make sure you create a bucker prior execution and also activate versioning on that bucket.
+
+* gsutil versioning set on gs://your_terraform_state_bucket
+
+Scripts uses a GCP service account and a JSON file with your account token.  
