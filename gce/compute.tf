@@ -24,7 +24,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-1604-xenial-v20170328"
+      image_family = "ubuntu-1604-lts"
     }
   }
 
