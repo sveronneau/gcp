@@ -4,6 +4,15 @@ provider "google" {
   region  = "northamerica-northeast1"
 }
 
+# data "terraform_remote_state" "foo" {
+#   backend = "gcs"
+#   config {
+#     credentials = "your_json_creds"
+#     bucket      = "your_state_pucket"
+#     prefix      = "terraform/state/MIG"
+#   }
+# }
+
 resource "google_compute_instance_template" "instance_template" {
   name_prefix = "nginx-"
   description = "This template is used to create nginx server instances."
