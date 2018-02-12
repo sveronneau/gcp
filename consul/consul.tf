@@ -19,7 +19,7 @@ resource "google_compute_instance" "ansible" {
     }
   }
 
-#  # This is where we configure the instance with ansible-playbook
+# This is where we configure the instance with ansible-playbook
   provisioner "local-exec" {
     command = "sleep 90; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u your_key_username --private-key ./my_private_key -i '${google_compute_instance.ansible.network_interface.0.access_config.0.assigned_nat_ip}', master.yml"
   }
