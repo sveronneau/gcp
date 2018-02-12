@@ -6,7 +6,7 @@ Collection of Packer, Terraform, Consul, Ansible and other GCP related scripts.
 * Create Project
 * gce (Compute engine)
 * gke (Kubernetes engine)
-* ilb (internal load balancer)
 * MIG (Managed Instance Group)
+* MIG/ilb (internal load balancer)
 * packer
 * vpc and firewall
