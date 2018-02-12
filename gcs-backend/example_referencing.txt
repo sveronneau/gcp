@@ -1,3 +1,4 @@
+Include this in your TF file to reference to the GCS backend.
 
 data "terraform_remote_state" "foo" {
   backend = "gcs"
