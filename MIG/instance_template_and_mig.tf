@@ -33,11 +33,11 @@ resource "google_compute_instance_template" "instance_template" {
   }
 
   // Use an existing disk resource in RO mode since this is a MIG
-  disk {
-    source      = "my_existing_disknginx"
-    auto_delete = false
-    boot        = false
-  }
+#  disk {
+#    source      = "my_existing_disknginx"
+#    auto_delete = false
+#    boot        = false
+#  }
 
   network_interface {
     network = "default"
