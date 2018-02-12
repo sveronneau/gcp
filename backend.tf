@@ -1,3 +1,5 @@
+// GCS backend for tfstae your_sa_file
+
 terraform {
  backend "gcs" {
    bucket  = "<user>-terraform-admin"
