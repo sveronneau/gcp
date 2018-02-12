@@ -1,3 +1,9 @@
+provider "google" {
+  credentials = "${file("gcp_service_account.json")}"
+  project = "your_gcp_project"
+  region  = "northamerica-northeast1"
+}
+
 resource "google_compute_network" "default" {
   name                    = "foobar"
   description             = "TF created VPC"

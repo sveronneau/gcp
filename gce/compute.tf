@@ -1,3 +1,9 @@
+provider "google" {
+  credentials = "${file("gcp_service_account.json")}"
+  project = "your_gcp_project"
+  region  = "northamerica-northeast1"
+}
+
 data "google_compute_zones" "available" {}
 
 variable "node_count" {

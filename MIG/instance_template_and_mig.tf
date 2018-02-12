@@ -1,3 +1,9 @@
+provider "google" {
+  credentials = "${file("gcp_service_account.json")}"
+  project = "your_gcp_project"
+  region  = "northamerica-northeast1"
+}
+
 resource "google_compute_instance_template" "instance_template" {
   name_prefix = "instance-template-"
   description = "This template is used to create nginx server instances."
