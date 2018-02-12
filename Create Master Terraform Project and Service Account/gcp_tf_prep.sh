@@ -1,14 +1,14 @@
 #!/bin/bash
-# 
-export TF_VAR_org_id=
-export TF_VAR_billing_account=
-export TF_ADMIN=${USER}-terraform-admin
-export TF_CREDS=~/.config/gcloud/terraform-admin.json
 #
-# CREATE TF PROJECT
+export TF_VAR_org_id=your_org_id
+export TF_VAR_billing_account=your_billing_account_id
+export TF_ADMIN=your_user-terraform-admin
+export TF_CREDS=your_tf_admin_creds.JSON
+#
+# CREATE TF ADMIN PROJECT
 gcloud projects create ${TF_ADMIN} --organization ${TF_VAR_org_id} --set-as-default
 gcloud beta billing projects link ${TF_ADMIN} --billing-account ${TF_VAR_billing_account}
-# 
+#
 # CREATE TF service account
 gcloud iam service-accounts create terraform --display-name "Terraform admin account"
 gcloud iam service-accounts keys create ${TF_CREDS} --iam-account terraform@${TF_ADMIN}.iam.gserviceaccount.com
@@ -50,6 +50,5 @@ export GOOGLE_APPLICATION_CREDENTIALS=${TF_CREDS}
 export GOOGLE_PROJECT=${TF_ADMIN}
 #
 # initialize the backend:
-
 terraform init
 #
