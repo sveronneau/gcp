@@ -15,7 +15,7 @@ resource "google_compute_instance" "ansible" {
 
   boot_disk {
     initialize_params {
-      image = "ubuntu-1604-xenial-v20170328"
+      image_family = "ubuntu-1604-lts"
     }
   }
 
@@ -23,7 +23,7 @@ resource "google_compute_instance" "ansible" {
   provisioner "local-exec" {
     command = "sleep 90; ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -u your_key_username --private-key ./my_private_key -i '${google_compute_instance.ansible.network_interface.0.access_config.0.assigned_nat_ip}', master.yml"
   }
-  
+
   network_interface {
     network       = "default"
 
