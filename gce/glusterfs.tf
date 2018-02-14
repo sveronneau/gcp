@@ -13,7 +13,7 @@ variable "node_count" {
 resource "google_compute_disk" "seconddisk" {
     count   = "${var.node_count}"
     project = "your_gcp_project"
-    name    = "compute-datadisk-${count.index}"
+    name    = "glusterfs-datadisk-${count.index}"
     type    = "pd-ssd"
     zone    = "${data.google_compute_zones.available.names[0]}"
     size    = "80"
