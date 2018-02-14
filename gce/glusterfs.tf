@@ -40,15 +40,15 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    //network       = "foobar"
-    subnetwork    = "default"
+    network       = "default"
+    //subnetwork    = "default"
     //network      = "${google_compute_network.custom-subnet.id}"
     //subnetwork   = "${google_compute_subnetwork.subnet1a.id}"
-    subnetwork_project = "${google_project_services.project.project}"
+    //subnetwork_project = "${google_project_services.project.project}"
 
-    access_config {
+    //access_config {
       // Ephemeral IP
-    }
+    //}
   }
 
   metadata {
