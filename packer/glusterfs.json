@@ -24,7 +24,7 @@
            "inline": [
               "sudo yum -y search centos-release-gluster",
               "sudo yum -y install centos-release-gluster313",
-              "sudo yum -y install glusterfs gluster-cli glusterfs-libs glusterfs-server",
+              "sudo yum -y install glusterfs gluster-cli glusterfs-libs glusterfs-server htop",
               "sudo systemctl enable glusterd.service",
               "sudo service glusterd  restart"
            ]
