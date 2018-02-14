@@ -1,15 +1,15 @@
 // Configure the Google Cloud provider
 
 provider "google" {
-  credentials = "${var.credentials}"
-  project = "${var.project}"
-  region  = "${var.region}"
+  credentials = "${file("gcp_service_account.json")}"
+  project = "your_gcp_project"
+  region  = "northamerica-northeast1"
 }
 
 resource "google_compute_instance" "ansible" {
   count        = "1"
-  project      = "${var.project}"
-  zone         = "${var.zone}"
+  project      = "your_gcp_project"
+  zone         = "northamerica-northeast1-a"
   name         = "consul-node-${count.index}"
   machine_type = "f1-micro"
 
