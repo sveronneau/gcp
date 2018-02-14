@@ -16,7 +16,7 @@ resource "google_compute_disk" "seconddisk" {
     name    = "compute-datadisk-${count.index}"
     type    = "pd-standard"
     zone    = "${data.google_compute_zones.available.names[0]}"
-    size    = "15" //Gb
+    size    = "15"
 }
 
 resource "google_compute_instance" "default" {
@@ -30,7 +30,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     initialize_params {
-      image_family = "glusterfs" //Family from Packer baking
+      image = "glusterfs"
     }
   }
 
