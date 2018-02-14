@@ -1,6 +1,6 @@
 {
   "variables": {
-        "gcloud_account_json": "{{env `HOME`}}/.gcloud/account.json",
+        "gcloud_account_json": "your_account_file.json",
         "gcloud_project_id": "your_project_id"
   },
   "builders": [
