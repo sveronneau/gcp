@@ -12,7 +12,7 @@ variable "node_count" {
 
 resource "google_compute_disk" "seconddisk" {
     count   = "${var.node_count}"
-    project = "${google_project_services.project.project}"
+    project = "your_gcp_project"
     name    = "compute-datadisk-${count.index}"
     type    = "pd-standard"
     zone    = "${data.google_compute_zones.available.names[0]}"
@@ -21,7 +21,7 @@ resource "google_compute_disk" "seconddisk" {
 
 resource "google_compute_instance" "default" {
   count        = "${var.node_count}"
-  project      = "${google_project_services.project.project}"
+  project      = "your_gcp_project"
   zone         = "${data.google_compute_zones.available.names[0]}"
   name         = "glusterfs-node-${count.index}"
   machine_type = "n1-standard-2"
@@ -41,7 +41,7 @@ resource "google_compute_instance" "default" {
 
   network_interface {
     //network       = "foobar"
-    subnetwork    = "subnet-na-east1"
+    subnetwork    = "default"
     //network      = "${google_compute_network.custom-subnet.id}"
     //subnetwork   = "${google_compute_subnetwork.subnet1a.id}"
     subnetwork_project = "${google_project_services.project.project}"
