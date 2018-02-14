@@ -7,9 +7,8 @@ All Terraform scripts uses a GCP service account and a JSON file with your accou
 * Create Master TF Project and SA
 * Create Project
 * gce (Compute engine)
-* gcs
+* gcs-backend (enable gcs backend for terraform state file)
 * gke (Kubernetes engine)
 * MIG (Managed Instance Group)
-* MIG/ilb (internal load balancer)
 * packer
 * vpc and firewall
