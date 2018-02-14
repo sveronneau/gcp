@@ -12,7 +12,8 @@
       "source_image_family": "centos-7",
       "zone": "northamerica-northeast1-a",
       "image_name": "glusterfs-golden-{{timestamp}}",
-      "machine_type":"n1-standard-8",
+      "machine_type":"n1-standard-1",
+      "disk_size": "40",
       "on_host_maintenance":"TERMINATE",
       "image_family":"glusterfs"
     }

@@ -14,9 +14,9 @@ resource "google_compute_disk" "seconddisk" {
     count   = "${var.node_count}"
     project = "your_gcp_project"
     name    = "compute-datadisk-${count.index}"
-    type    = "pd-standard"
+    type    = "pd-ssd"
     zone    = "${data.google_compute_zones.available.names[0]}"
-    size    = "15"
+    size    = "80"
 }
 
 resource "google_compute_instance" "default" {
@@ -24,7 +24,7 @@ resource "google_compute_instance" "default" {
   project      = "your_gcp_project"
   zone         = "${data.google_compute_zones.available.names[0]}"
   name         = "glusterfs-node-${count.index}"
-  machine_type = "n1-standard-2"
+  machine_type = "n1-standard-1"
 
   tags = ["glusterfs", "xmldation"]
 
