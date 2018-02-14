@@ -11,7 +11,10 @@
       "ssh_username":"packer",
       "source_image_family": "centos-7",
       "zone": "northamerica-northeast1-a",
-      "image_name": "glusterfs-golden-{{timestamp}}"
+      "image_name": "glusterfs-golden-{{timestamp}}",
+      "machine_type":"n1-standard-8",
+      "on_host_maintenance":"TERMINATE",
+      "image_family":"glusterfs"
     }
   ],
   "provisioners": [
