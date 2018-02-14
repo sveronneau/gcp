@@ -1,21 +1,19 @@
-// Configure the Google Cloud provider
-
 provider "google" {
-  credentials = "${file("/path_to/your_sa_file.json")}"
-  project = "your_project"
-  region  = "northamerica-northeast1"
+  credentials = "${var.credentials}"
+  project = "${var.project}"
+  region  = "${var.region}"
 }
 
 data "google_container_engine_versions" "canada" {
-  zone = "northamerica-northeast1-a"
+  zone = "${var.zone}"
 }
 
 resource "google_container_cluster" "primary" {
-  name               = "my_little_cluster"
-  zone               = "northamerica-northeast1-a"
+  name               = "${var.gke_cluster_name}"
+  zone               = "${var.zone}"
   node_version       = "${data.google_container_engine_versions.canada.latest_node_version}"
   min_master_version = "${data.google_container_engine_versions.canada.latest_node_version}"
-  initial_node_count = 3
+  initial_node_count = "${var.gke_cluster_node_count}"
 
 #  additional_zones = [
 #    "northamerica-northeast1-b",
@@ -24,8 +22,8 @@ resource "google_container_cluster" "primary" {
 
 // DONT USE THIS IN PROD
   master_auth {
-    username = "your_username"
-    password = "your_password"
+    username = "${var.gke_cluster_user}"
+    password = "${var.gke_cluster_pwd}"
   }
 
   node_config {
@@ -37,10 +35,10 @@ resource "google_container_cluster" "primary" {
     ]
 
     labels {
-      foo = "bar"
+      foo = "first_gke_app"
     }
 
-    tags = ["foo", "bar"]
+    tags = ["test", "build1"]
   }
 }
 
