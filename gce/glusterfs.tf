@@ -46,7 +46,7 @@ resource "google_compute_instance" "default" {
     //subnetwork   = "${google_compute_subnetwork.subnet1a.id}"
     //subnetwork_project = "${google_project_services.project.project}"
 
-    //access_config {
+    //access_config {  // remove this to enable public ip assignation
       // Ephemeral IP
     //}
   }
