@@ -11,8 +11,13 @@ data "google_container_engine_versions" "canada" {
 resource "google_container_cluster" "primary" {
   name               = "${var.gke_cluster_name}"
   zone               = "${var.zone}"
-  node_version       = "${data.google_container_engine_versions.canada.latest_node_version}"
-  min_master_version = "${data.google_container_engine_versions.canada.latest_node_version}"
+  // Get the latest version all the time
+  #node_version       = "${data.google_container_engine_versions.canada.latest_node_version}"
+  #min_master_version = "${data.google_container_engine_versions.canada.latest_node_version}"
+  //
+  node_version       = "${var.gke_cluster_node_version}"
+  min_master_version = "${var.gke_cluster_min_master_version}"
+  //
   initial_node_count = "${var.gke_cluster_node_count}"
 
 #  additional_zones = [
