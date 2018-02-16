@@ -8,6 +8,16 @@ data "google_container_engine_versions" "canada" {
   zone = "${var.zone}"
 }
 
+// Store state file in memory and the rest is encypted in flight and at rest in GCS
+# data "terraform_remote_state" "foo" {
+#   backend = "gcs"
+#   config {
+#     credentials = "your_json_creds"
+#     bucket      = "your_state_pucket"
+#     prefix      = "terraform/state/MIG"
+#   }
+# }
+
 resource "google_container_cluster" "primary" {
   name               = "${var.gke_cluster_name}"
   zone               = "${var.zone}"
@@ -25,7 +35,7 @@ resource "google_container_cluster" "primary" {
 #    "northamerica-northeast1-c",
 #  ]
 
-// DONT USE THIS IN PROD
+// DONT USE THIS IN PROD IF STATE FILE IS LOCAL (plain-text JSON)
   master_auth {
     username = "${var.gke_cluster_user}"
     password = "${var.gke_cluster_pwd}"
