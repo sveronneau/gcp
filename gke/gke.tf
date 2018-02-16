@@ -14,7 +14,7 @@ data "google_container_engine_versions" "canada" {
 #   config {
 #     credentials = "your_json_creds"
 #     bucket      = "your_state_pucket"
-#     prefix      = "terraform/state/MIG"
+#     prefix      = "terraform/state/gke_cluster_name"
 #   }
 # }
 
