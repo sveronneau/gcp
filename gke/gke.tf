@@ -8,7 +8,7 @@ data "google_container_engine_versions" "canada" {
   zone = "${var.zone}"
 }
 
-// Store state file in memory and the rest is encypted in flight and at rest in GCS
+// Store state file in memory and the rest is encrypted in flight and at rest in GCS
 # data "terraform_remote_state" "foo" {
 #   backend = "gcs"
 #   config {
