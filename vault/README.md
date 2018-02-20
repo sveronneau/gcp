@@ -5,6 +5,8 @@ Requirements: Terraform and Ansible locally installed. GCP project, Service Acco
 
 Ounce deployed, you need to initialize Vault by running the following commands:
 
+* SSH to your instance
+* sudo su -
 * export VAULT_ADDR=http://127.0.0.1:8200
 * vault operator init
 * vault status
