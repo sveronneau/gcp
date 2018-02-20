@@ -24,7 +24,7 @@ resource "google_compute_instance" "ansible" {
   network_interface {
     network       = "default"
 
-    access_config {
+    access_config { //commenting this section will remove private IP assignment
       // Ephemeral IP
     }
   }

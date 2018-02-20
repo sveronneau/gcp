@@ -33,4 +33,4 @@
     - name: Launch Vault
       become: true
       become_user: root
-      shell: nohup /bin/vault server -config /bin/vault.d/config.json </dev/null >/dev/null 2>&1 &
+      shell: nohup /bin/vault server -config /etc/vault.d/config.json </dev/null >/dev/null 2>&1 &
