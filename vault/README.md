@@ -1,4 +1,4 @@
-# gcp/consul_vars
+# gcp/vault
 Terraform and Ansible script to deploy Vault Consul 0.9.3 (Vanilla-configured, single instance, Initialized) within a GCP instance.
 
 Requirements: Terraform and Ansible locally installed. GCP project, Service Account JSON file and Project wide SSH Key.
