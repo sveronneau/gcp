@@ -1,0 +1,20 @@
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install the unzip package
+      apt:
+        name: unzip
+        state: present
+
+    - name: Download and extract Vault in /bin
+      unarchive:
+        src: https://releases.hashicorp.com/vault/0.9.3/vault_0.9.3_linux_amd64.zip
+        dest: /bin/
+        remote_src: yes
+
+    - name: Make default config directory
+      command: sudo mkdir /etc/vault.d
+
+    - name: Launch Vault.
+      shell: nohup /bin/vault </dev/null >/dev/null 2>&1 &
