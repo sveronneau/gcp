@@ -34,3 +34,8 @@
       become: true
       become_user: root
       shell: nohup /bin/vault server -config /etc/vault.d/config.json </dev/null >/dev/null 2>&1 &
+
+    - name: Initialize Vault
+      become: true
+      become_user: root
+      shell: VAULT_ADDR=http://127.0.0.1:8200 /bin/vault operator init
