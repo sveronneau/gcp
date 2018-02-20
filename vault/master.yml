@@ -14,7 +14,21 @@
         remote_src: yes
 
     - name: Make default config directory
-      command: sudo mkdir /etc/vault.d
+      become: true
+      become_user: root
+      command: mkdir /etc/vault.d
 
-    - name: Launch Vault.
-      shell: nohup /bin/vault </dev/null >/dev/null 2>&1 &
+    - name: Set default config file
+      become: true
+      become_user: root
+      command: touch /etc/vault.d/config.json
+
+    - name: Make default data directory
+      become: true
+      become_user: root
+      command: mkdir /etc/vault.d/data
+
+    - name: Launch Vault
+      become: true
+      become_user: root
+      shell: nohup /bin/vault server -config /bin/vault.d/config.json </dev/null >/dev/null 2>&1 &
