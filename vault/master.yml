@@ -13,20 +13,22 @@
         dest: /bin/
         remote_src: yes
 
-    - name: Make default config directory
-      become: true
-      become_user: root
-      command: mkdir /etc/vault.d
+    - name: Make default config and data directory
+      file:
+        path: /etc/vault.d/data
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+        recurse: yes
 
-    - name: Set default config file
-      become: true
-      become_user: root
-      command: touch /etc/vault.d/config.json
-
-    - name: Make default data directory
-      become: true
-      become_user: root
-      command: mkdir /etc/vault.d/data
+    - name: Copy default Vault config file
+      copy:
+        src: config.json
+        dest: /etc/vault.d/config.json
+        owner: root
+        group: root
+        mode: 0644
 
     - name: Launch Vault
       become: true
