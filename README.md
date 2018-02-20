@@ -12,4 +12,5 @@ All Terraform and Packer scripts uses a GCP service account and a JSON file with
 * gke (Kubernetes engine)
 * MIG (Managed Instance Group)
 * packer
+* vault
 * vpc and firewall
