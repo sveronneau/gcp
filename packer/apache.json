@@ -21,7 +21,7 @@
   "provisioners": [
       {
            "type": "shell",
-           "script":"provisioner.sh"
+           "script":"apache.sh"
       }
 
   ]
