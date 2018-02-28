@@ -13,9 +13,9 @@ sudo ufw allow 'Apache Full'
 INT_IP="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"
 EXT_IP="$(curl -s ipinfo.io/ip)"
 
-sleep 30s
+sleep 15s
 
-cat <<EOF > /var/www/html/index.html
+sudo cat <<EOF > /var/www/html/index.html
 <html>
 <body>
 <title>Apache Server - $(hostname)</title>
