@@ -1,0 +1,28 @@
+{
+  "variables": {
+        "gcloud_account_json": "your_account_file.json",
+        "gcloud_project_id": "your_project_id"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "account_file": "{{user `gcloud_account_json`}}",
+      "project_id": "{{user `gcloud_project_id`}}",
+      "ssh_username":"packer",
+      "source_image_family": "ubuntu-1604-lts",
+      "zone": "northamerica-northeast1-a",
+      "image_name": "apache-golden-{{timestamp}}",
+      "machine_type":"n1-standard-1",
+      "disk_size": "40",
+      "on_host_maintenance":"TERMINATE",
+      "image_family":"apache"
+    }
+  ],
+  "provisioners": [
+      {
+           "type": "shell",
+           "script":"provisioner.sh"
+      }
+
+  ]
+}
