@@ -62,7 +62,7 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
 #
 # Firewall rules for specific Tags
 resource "google_compute_firewall" "default" {
-  name    = "${var.fwr_name}"
+  name    = "${var.network}-${var.fwr_name}"
   network = "${var.network}"
   project = "${var.project}"
 
