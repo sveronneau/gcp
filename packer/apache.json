@@ -22,19 +22,12 @@
       {
            "type": "shell",
            "inline": [
-                "sudo mkdir /tmp/packer",
-                "sudo chmod -R 777 /tmp/packer",
                 "sudo apt-get clean",
                 "sudo apt-get update",
                 "sudo apt-get -y upgrade",
                 "sudo apt-get -y install apache2 htop",
                 "sudo ufw allow 'Apache Full'"
            ]
-      },
-      {
-          "type": "file",
-          "source": "./prep_apache.sh",
-          "destination": "/tmp/packer/prep_apache.sh"
       }
   ]
 }
