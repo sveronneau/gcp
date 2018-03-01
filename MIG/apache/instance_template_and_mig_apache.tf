@@ -100,6 +100,22 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
   }
 }
 #
+# MIG AutoScaler
+resource "google_compute_autoscaler" "my_autoscaler" {
+  name   = "mig-scaler"
+  zone = "${var.zone}"
+  target = "${google_compute_instance_group_manager.instance_group_manager.self_link}"
+
+  autoscaling_policy = {
+    max_replicas    = 5
+    min_replicas    = 3
+    cooldown_period = 60
+
+    cpu_utilization {
+      target = 0.5
+    }
+  }
+#
 # Firewall rules for specific Tags
 resource "google_compute_firewall" "default" {
   name    = "${var.network}-${var.fwr_name}"
