@@ -36,10 +36,7 @@ resource "google_compute_instance_template" "instance_template" {
     <body>
     <title>Apache Server - $(hostname)</title>
     <img src="https://cloud.google.com/_static/9abbcf9aa7/images/cloud/gcp-logo.svg" alt="Google Cloud" height="51" width="400">
-    <h1>Packer baked Apache Server on GCP</h1>
-    <p><b>Hostname:</b> $(hostname)</p>
-    <p><b>Internal IP:</b> $INT_IP</p>
-    <p><b>External IP:</b> $EXT_IP</p>
+    <h1>Packer baked Apache Server on GCP</h1><p><b>Hostname:</b> $(hostname)</p><p><b>Internal IP:</b> $INT_IP</p><p><b>External IP:</b> $EXT_IP</p>
     <img src="https://blog-en.openalfa.com/iconos/logos/apache_httpd.jpg" alt="Google Cloud" height="100" width="100">
     </body>
     </html>
@@ -49,7 +46,7 @@ SCRIPT
   network_interface {
     network = "${var.network}"
     #
-    # Give public IP to instance(s)
+    # Give a Public IP to instance(s)
     access_config {
       // Ephemeral IP
     }
@@ -61,6 +58,20 @@ SCRIPT
 
   lifecycle {
     create_before_destroy = true
+  }
+}
+#
+# HealthCheck
+resource "google_compute_health_check" "autohealing" {
+  name                = "autohealing-health-check"
+  check_interval_sec  = 5
+  timeout_sec         = 5
+  healthy_threshold   = 2
+  unhealthy_threshold = 10                         # 50 seconds
+
+  http_health_check {
+    request_path = "/"
+    port         = "80"
   }
 }
 #
@@ -81,6 +92,11 @@ resource "google_compute_instance_group_manager" "instance_group_manager" {
   named_port {
     name = "https"
     port = 443
+  }
+
+  auto_healing_policies {
+    health_check      = "${google_compute_health_check.autohealing.self_link}"
+    initial_delay_sec = 300
   }
 }
 #
