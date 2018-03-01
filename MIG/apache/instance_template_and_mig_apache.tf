@@ -43,12 +43,16 @@ resource "google_compute_instance_template" "instance_template" {
     <img src="https://blog-en.openalfa.com/iconos/logos/apache_httpd.jpg" alt="Google Cloud" height="100" width="100">
     </body>
     </html>
-    EOF
 SCRIPT
   }
 
   network_interface {
     network = "${var.network}"
+    #
+    # Give public IP to instance(s)
+    access_config {
+      // Ephemeral IP
+    }
   }
 
   service_account {
