@@ -1,6 +1,6 @@
 # Creds and default location
-variable "credentials" { default = "your_account.json" }
-variable "project"     { default = "your_project_id" }
+variable "credentials" { default = "your_account.json" } // Change with you service account .json file
+variable "project"     { default = "your_project_id" } // Your GCP Project ID
 variable "region"      { default = "northamerica-northeast1" }
 variable "zone"        { default = "northamerica-northeast1-a" }
 #
@@ -14,10 +14,10 @@ variable "source_image" { default =  "apache" } //This is the family tag used wh
 variable "network"      { default =  "default" }
 #
 # Managed Instace Group
-variable "name"               { default =  "instance-group-manager" }
-variable "base_instance_name" { default =  "instance-group-manager" }
+variable "mig_name"           { default =  "apache-mig" }
+variable "base_instance_name" { default =  "apache" }
 variable "target_size"        { default =  "3" }
 #
 # Firewall Rules
-
+variable "fwr_name" { default = "allow-http-https-webserver" }
 #
