@@ -1,20 +1,20 @@
 #!/bin/bash -x
 set -eu -o pipefail
-
+#
 sudo apt-get clean
 sudo apt-get update
 sudo apt-get upgrade -y
-
+#
 PKGS="apache2 htop"
-
+#
 sudo apt-get install $PKGS -y
 sudo ufw allow 'Apache Full'
-
+#
 INT_IP="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"
 EXT_IP="$(curl -s ipinfo.io/ip)"
-
-sleep 15s
-
+#
+sleep 10s
+#
 sudo cat <<EOF > /var/www/html/index.html
 <html>
 <body>
