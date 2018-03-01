@@ -1,9 +1,5 @@
-#!/bin/bash -x
-set -eu -o pipefail
-#
 INT_IP="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"
 EXT_IP="$(curl -s ipinfo.io/ip)"
-#
 sudo cat <<EOF > /var/www/html/index.html
 <html>
 <body>

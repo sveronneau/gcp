@@ -31,7 +31,6 @@ resource "google_compute_instance_template" "instance_template" {
     startup-script = <<SCRIPT
     INT_IP="$(ip route get 8.8.8.8 | awk '{print $NF; exit}')"
     EXT_IP="$(curl -s ipinfo.io/ip)"
-    #
     sudo cat <<EOF > /var/www/html/index.html
     <html>
     <body>
