@@ -19,7 +19,7 @@ variable "base_instance_name" { default =  "apache" }
 variable "target_size"        { default =  "3" }
 #
 # Firewall Rules
-variable "fwr_name" { default = "allow-http-https-webserver" }
+variable "fwr_name" { default = "allow-http-https" }
 #
 # Startup script
-variable "startup_script" { default = "/tmp/prep_apache.sh" }
+variable "startup_script" { default = "/boot/prep_apache.sh" }

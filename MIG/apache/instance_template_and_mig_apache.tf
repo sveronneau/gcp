@@ -13,7 +13,7 @@ resource "google_compute_instance_template" "instance_template" {
   tags = ["${var.tags}"]
   instance_description = "${var.desc_inst}"
   machine_type = "${var.machine_type}"
-  can_ip_forward = false // No public IP will be allocated
+  can_ip_forward = false // Whether to allow sending and receiving of packets with non-matching source or destination IPs. This defaults to false.
 
   scheduling {
     automatic_restart   = true
