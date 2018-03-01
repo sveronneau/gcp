@@ -27,6 +27,8 @@ resource "google_compute_instance_template" "instance_template" {
     boot = true
   }
 
+  metadata_startup_script = "${var.startup_script}"
+
   network_interface {
     network = "${var.network}"
   }

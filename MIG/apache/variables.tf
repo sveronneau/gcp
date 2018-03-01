@@ -21,3 +21,5 @@ variable "target_size"        { default =  "3" }
 # Firewall Rules
 variable "fwr_name" { default = "allow-http-https-webserver" }
 #
+# Startup script
+variable "startup_script" { default = "/tmp/prep_apache.sh" }

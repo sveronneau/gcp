@@ -28,7 +28,11 @@
                 "sudo apt-get -y install apache2 htop",
                 "sudo ufw allow 'Apache Full'"
            ]
+      },
+      {
+          "type": "file",
+          "source": "prep_apache.sh",
+          "destination": "/tmp/prep_apache.sh"
       }
-
   ]
 }
