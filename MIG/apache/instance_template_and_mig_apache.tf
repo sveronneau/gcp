@@ -34,10 +34,13 @@ resource "google_compute_instance_template" "instance_template" {
     sudo cat <<EOF > /var/www/html/index.html
     <html>
     <body>
-    <title>Apache Server - $(hostname)</title>
-    <img src="https://cloud.google.com/_static/9abbcf9aa7/images/cloud/gcp-logo.svg" alt="Google Cloud" height="51" width="400">
-    <h1>Packer baked Apache Server on GCP</h1><p><b>Hostname:</b> $(hostname)</p><p><b>Internal IP:</b> $INT_IP</p><p><b>External IP:</b> $EXT_IP</p>
-    <img src="https://blog-en.openalfa.com/iconos/logos/apache_httpd.jpg" alt="Google Cloud" height="100" width="100">
+    <title>Apache Server - instance-1</title>
+    <img src="https://cloud.google.com/_static/9abbcf9aa7/images/cloud/gcp-logo.svg" alt="Google Cloud" height="51" width="400"><br><br>
+    <img src="https://www.datocms-assets.com/2885/1506457192-blog-packer-list.svg" alt="Packer" height="100" width="100">
+    <img src="https://www.datocms-assets.com/2885/1506457071-blog-terraform-list.svg" alt="Terraform" height="100" width="100">
+    <img src="https://blog-en.openalfa.com/iconos/logos/apache_httpd.jpg" alt="Apache" height="100" width="100">
+    <p><b>Hostname:</b> instance-1<br><b>Internal IP:</b> 10.142.0.2<br><b>External IP:</b> 35.231.115.38</p>
+    <p>A <b>Packer</b> built, <b>Terraform</b> deployed, <b>GCP</b> Auto Scalling, Managed Instance Group with Load Balancer serving <b>Apache Web Server</b></p>
     </body>
     </html>
 SCRIPT
