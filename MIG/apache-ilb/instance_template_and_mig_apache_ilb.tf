@@ -139,8 +139,7 @@ module "gce-lb-http" {
   target_tags       = target_tags = ["${var.tags}"]
   backends          = {
     "0" = [
-      { group = "${module.mig1.instance_group}" },
-      { group = "${module.mig2.instance_group}" }
+      { group = "${var.mig_name}" }
     ],
   }
   backend_params    = [
