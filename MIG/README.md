@@ -3,4 +3,5 @@ Terraform script to create a an instance template and an instance group with a m
 
 Scripts uses a GCP service account and a JSON file with your account token and ENV VARS
 
--- Apache folder contains a more complexe config with variables.tf, modules and using a internal load balancer
+-- Apache folder contains a more complexe config with variables.tf
+-- Apache-ilb folder contains a more complexe config with variables.tf, modules and using a internal load balancer
