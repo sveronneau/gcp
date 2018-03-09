@@ -118,6 +118,7 @@ resource "google_compute_autoscaler" "my_autoscaler" {
       target = 0.5
     }
   }
+}
 #
 # Firewall rules for specific Tags
 resource "google_compute_firewall" "default" {
