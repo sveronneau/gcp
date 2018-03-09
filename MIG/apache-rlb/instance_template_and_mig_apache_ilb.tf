@@ -7,23 +7,30 @@ provider "google" {
 }
 #
 # Backend Services
-resource "google_compute_region_backend_service" "rbs" {
-  name             = "rbs-1"
-  region           = "${var.region}"
-  protocol         = "HTTP"
-  timeout_sec      = 30
-  session_affinity = "none"
+resource "google_compute_backend_service" "rbs" {
+  name             = "${var.be_name}"
+  port_name        = "${var.be_port_name}"
+  protocol         = "${var.be_protocol}"
+  timeout_sec      = "${var.be_timeout}"
+  session_affinity = "${var.be_session_affinity}"
 
   backend {
     group = "${google_compute_region_instance_group_manager.rmig.instance_group}"
   }
 
-  health_checks = ["${google_compute_health_check.default.self_link}"]
+  health_checks = ["${google_compute_http_health_check.default.self_link}"]
+}
+
+resource "google_compute_http_health_check" "default" {
+  name               = "${var.hc_name}"
+  request_path       = "/"
+  check_interval_sec = 1
+  timeout_sec        = 1
 }
 #
 # Regional MIG
 resource "google_compute_region_instance_group_manager" "rmig" {
-  name               = "terraform-test"
+  name               = "${var.rmig_name}"
   instance_template  = "${google_compute_instance_template.cit.self_link}"
   base_instance_name = "${var.base_instance_name}"
   region             = "${var.region}"
@@ -70,57 +77,79 @@ resource "google_compute_instance_template" "cit" {
     </body>
     </html>
 SCRIPT
-}
+  }
 
-network_interface {
-  network = "${var.network}"
-  #
-  # Give a Public IP to instance(s)
-  #access_config {
-  #  // Ephemeral IP
-  #}
-}
+  network_interface {
+    network = "${var.network}"
+    #
+    # Give a Public IP to instance(s)
+    #access_config {
+    #  // Ephemeral IP
+    #}
+  }
 
-service_account {
-  scopes = ["userinfo-email", "compute-ro", "storage-ro"]
-}
+  service_account {
+    scopes = ["userinfo-email", "compute-ro", "storage-ro"]
+  }
 
-lifecycle {
-  create_before_destroy = true
-}
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 #
 # Compute Healthcheck
 resource "google_compute_health_check" "default" {
-name               = "test"
-check_interval_sec = 1
-timeout_sec        = 1
+  name               = "${var.hc_name}"
+  check_interval_sec = 1
+  timeout_sec        = 1
 
-tcp_health_check {
-  port = "80"
-}
+  tcp_health_check {
+    port = "${var.hc_port}"
+  }
 }
 #
 # Regional MIG AutoScaler
-resource "google_compute_region_autoscaler" "rmig_as" {
-name   = "rmig-autoscaler"
-region = "${var.region}"
-target = "${google_compute_region_instance_group_manager.rmig.self_link}"
+resource "google_compute_region_autoscaler" "cras" {
+  name   = "${var.rmig_as_name}"
+  region = "${var.region}"
+  target = "${google_compute_region_instance_group_manager.rmig.self_link}"
 
-autoscaling_policy = {
-  max_replicas    = 5
-  min_replicas    = 3
-  cooldown_period = 60
-
-  cpu_utilization {
-    target = 0.5
+  autoscaling_policy = {
+    max_replicas    = 5
+    min_replicas    = 3
+    cooldown_period = 60
+    cpu_utilization {
+      target = 0.5
+    }
   }
 }
-}
 #
-# Forwarding Rule
-resource "google_compute_forwarding_rule" "default" {
-name       = "website-forwarding-rule"
-target     = "${google_compute_target_pool.default.self_link}"
-port_range = "80"
+# Global Forwarding Rule
+resource "google_compute_global_forwarding_rule" "gfr" {
+  name       = "${var.gfr_name}"
+  target     = "${google_compute_target_http_proxy.thp.self_link}"
+  port_range = "${var.gfr_portrange}"
+}
+resource "google_compute_target_http_proxy" "thp" {
+  name        = "${var.thp_name}"
+  url_map     = "${google_compute_url_map.urlmap.self_link}"
+}
+resource "google_compute_url_map" "urlmap" {
+  name            = "${var.urlmap_name}"
+  default_service = "${google_compute_backend_service.rbs.self_link}"
+
+  #host_rule {
+  #  hosts        = ["mysite.com"]
+  #  path_matcher = "allpaths"
+  #}
+
+  #path_matcher {
+  #  name            = "allpaths"
+  #  default_service = "${google_compute_backend_service.rbs.self_link}"
+
+  #  path_rule {
+  #    paths   = ["/*"]
+  #    service = "${google_compute_backend_service.rbs.self_link}"
+  #  }
+  #}
 }
