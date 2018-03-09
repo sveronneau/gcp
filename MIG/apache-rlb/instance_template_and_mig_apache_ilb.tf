@@ -35,6 +35,21 @@ resource "google_compute_region_instance_group_manager" "rmig" {
   base_instance_name = "${var.base_instance_name}"
   region             = "${var.region}"
   target_size        = 3
+
+  named_port {
+    name = "http"
+    port = 80
+  }
+
+  named_port {
+    name = "https"
+    port = 443
+  }
+
+  auto_healing_policies {
+    health_check      = "${google_compute_http_health_check.default.self_link}"
+    initial_delay_sec = 300
+  }
 }
 #
 # Template creation
