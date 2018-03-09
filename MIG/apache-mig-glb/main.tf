@@ -152,19 +152,16 @@ resource "google_compute_target_http_proxy" "thp" {
 resource "google_compute_url_map" "urlmap" {
   name            = "${var.urlmap_name}"
   default_service = "${google_compute_backend_service.rbs.self_link}"
+}
+#
+# Firewall rules for specific Tags
+resource "google_compute_firewall" "default" {
+  name    = "${var.network}-${var.fwr_name}"
+  network = "${var.network}"
+  project = "${var.project}"
 
-  #host_rule {
-  #  hosts        = ["mysite.com"]
-  #  path_matcher = "allpaths"
-  #}
-
-  #path_matcher {
-  #  name            = "allpaths"
-  #  default_service = "${google_compute_backend_service.rbs.self_link}"
-
-  #  path_rule {
-  #    paths   = ["/*"]
-  #    service = "${google_compute_backend_service.rbs.self_link}"
-  #  }
-  #}
+  allow {
+    protocol = "tcp"
+    ports    = ["80", "443"]
+  }
 }
