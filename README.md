@@ -14,3 +14,4 @@ All Terraform and Packer scripts uses a GCP service account and a JSON file with
 * packer
 * vault
 * vpc and firewall
+* CloudSQL
