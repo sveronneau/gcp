@@ -9,7 +9,7 @@
 
     - name: Download and extract Vault in /bin
       unarchive:
-        src: https://releases.hashicorp.com/vault/0.9.3/vault_0.9.3_linux_amd64.zip
+        src: https://releases.hashicorp.com/vault/0.10.0/vault_0.10.0_linux_amd64.zip
         dest: /bin/
         remote_src: yes
 
