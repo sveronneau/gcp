@@ -1,5 +1,5 @@
 # gcp/consul
-Terraform and Ansible script to deploy Consul 1.0.6 (non-configured single instance) within a GCP instance.
+Terraform and Ansible script to deploy Consul 1.0.7 (non-configured single instance) within a GCP instance.
 
 Requirements: Terraform and Ansible locally installed. GCP project, Service Account JSON file and Project wide SSH Key.
 
