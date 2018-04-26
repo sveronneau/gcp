@@ -3,5 +3,4 @@ Terraform script to create a an instance template from a Packer built image foll
 
 Scripts uses a GCP service account and a JSON file with your account token and VARS defined in variables.tf
 
-The Image used for template creation can be create with Packer and this script 
-https://github.com/sveronneau/gcp/blob/master/packer/apache.json
+The Golden Image used for template creation can be created with Packer and this script: https://github.com/sveronneau/gcp/blob/master/packer/apache.json
