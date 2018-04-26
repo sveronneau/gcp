@@ -6,5 +6,5 @@ Requirements: Terraform and Ansible locally installed. GCP project, Service Acco
 Ounce deployed, Vault will be Initialized. You can check the status with the following steps:
 
 * SSH to your instance
-* export VAULT_ADDR=http://127.0.0.1:8200
+* export VAULT_ADDR=http://127.0.0.1:8200 (Change IP to be your private IP)
 * vault status
