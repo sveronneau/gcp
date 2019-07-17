@@ -1,3 +1,5 @@
+This script will list a log type in StackDriver and will loop to purge them all.
+
 gcloud beta logging logs list ; echo ; echo
 for i in $(gcloud beta logging logs list); do
    if [ $i != "NAME" ]
