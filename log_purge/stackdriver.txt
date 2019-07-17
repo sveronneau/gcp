@@ -1,0 +1,7 @@
+gcloud beta logging logs list ; echo ; echo
+for i in $(gcloud beta logging logs list); do
+   if [ $i != "NAME" ]
+   then
+     gcloud beta logging logs delete "$i" --verbosity critical
+   fi
+done
