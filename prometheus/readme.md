@@ -39,5 +39,5 @@ chmod 775 patch.sh <br>
 sh ./patch.sh deployment prometheus-deployment <br>
 kubectl get pods -n prometheus <br>
 
-<b>You can now explore those metrics in stackdriver</b><br>
+<b>You can now explore those metrics in Stackdriver</b><br>
 https://github.com/sveronneau/gcp/blob/master/prometheus/metrics.png
