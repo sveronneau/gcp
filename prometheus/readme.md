@@ -2,7 +2,7 @@ Installing Prometheus (from CloudShell)
 
 Make yourself cluster-admin
 
-ACCOUNT=$(gcloud info --format='value(config.account)')
+ACCOUNT=$(gcloud info --format='value(config.account)')<br>
 kubectl create clusterrolebinding owner-cluster-admin-binding \ --clusterrole cluster-admin --user $ACCOUNT
 Create a Prometheus namespace
 kubectl create namespace prometheus
