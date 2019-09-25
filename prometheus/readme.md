@@ -5,17 +5,17 @@ Make yourself cluster-admin
 ACCOUNT=$(gcloud info --format='value(config.account)')<br>
 kubectl create clusterrolebinding owner-cluster-admin-binding --clusterrole cluster-admin --user $ACCOUNT
 
-Create a Prometheus namespace
+<b>Create a Prometheus namespace</b><br>
+kubectl create namespace prometheus
 
-kubectl create namespace prometheus<br>
-Give the namespace cluster-reader permission<br>
+<b>Give the namespace cluster-reader permission</b><br>
 wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/clusterRole.yaml <br>
 kubectl create -f clusterRole.yaml<br>
-Create the configMap<br>
-wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/config-map.yamlà
 
-
+<b>Create the configMap</b><br>
+wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/config-map.yaml <br>
 kubectl create -f configMap.yaml -n prometheus
+
 Create the Deployment
 Get the latest version information from https://github.com/prometheus/prometheus/releases/ 
 wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/prometheus-deployment.yaml
