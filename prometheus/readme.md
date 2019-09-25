@@ -1,15 +1,17 @@
-Installing Prometheus (from CloudShell)
+<b>Installing Prometheus (from CloudShell)</b>
 
 Make yourself cluster-admin
 
 ACCOUNT=$(gcloud info --format='value(config.account)')<br>
-kubectl create clusterrolebinding owner-cluster-admin-binding \ --clusterrole cluster-admin --user $ACCOUNT
+kubectl create clusterrolebinding owner-cluster-admin-binding --clusterrole cluster-admin --user $ACCOUNT
+
 Create a Prometheus namespace
-kubectl create namespace prometheus
-Give the namespace cluster-reader permission
-wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/clusterRole.yaml 
-kubectl create -f clusterRole.yaml
-Create the configMap
+
+kubectl create namespace prometheus<br>
+Give the namespace cluster-reader permission<br>
+wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/clusterRole.yaml <br>
+kubectl create -f clusterRole.yaml<br>
+Create the configMap<br>
 wget \ https://raw.githubusercontent.com/sveronneau/gcp/master/prometheus/config-map.yamlà
 
 
