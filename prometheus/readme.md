@@ -1,4 +1,4 @@
-<b>---Installing Prometheus (from GCP CloudShell)---</b>
+<b>---Installing a Prometheus PoC from GCP CloudShell---</b>
 
 <b>Make yourself cluster-admin</b>
 
