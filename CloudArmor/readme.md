@@ -5,7 +5,7 @@ kubectl create namespace cloud-armor-how-to
 kubectl apply -f deployment.yaml
 #
 # Create CA Policy and Rules
-gcloud beta compute security-policies create ca-how-to-security-policy --description "policy for Google Cloud Armor how-to topic"
+gcloud beta compute security-policies create ca-how-to-security-policy --description "policy for Google Cloud Armor how-to topic"<br>
 gcloud beta compute security-policies rules create 1000 --security-policy ca-how-to-security-policy --description "Deny traffic from 192.0.2.0/24." --src-ip-ranges "192.0.2.0/24" --action "deny-404"
 #
 # Create BackendConfig that says which policy to use
