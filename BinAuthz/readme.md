@@ -7,13 +7,13 @@ nano policy.yaml
 # Import your new policy
 gcloud container binauthz policy import policy.yaml
 #
-# Testing the policy
+# Testing the policy (Deployment will fail)
 kubectl apply -f deployment.yaml
 #
 # Change ENFORCED_BLOCK_AND_AUDIT_LOG to DRYRUN_AUDIT_LOG_ONLY
 nano policy.yaml
 #
-# Dry-Run the policy
+# Dry-Run the policy (Deployment will work)
 gcloud container binauthz policy import policy.yaml
 #
-# Deployment will owrk and the dry-run will show in Stackdriver logging (Kubernetes Cluster / Filter: dryn-run)
+# Loook for dry-run in StackDriver Logging (Kubernetes Cluster / Filter: dry-run)
