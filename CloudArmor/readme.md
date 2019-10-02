@@ -19,7 +19,7 @@ kubectl apply -f service.yaml
 # Reserve External IP and give it a name
 gcloud compute addresses create cloud-armor-how-to-address --global
 #
-# Create Ingress that point to my BES abd uses the reserved external IP via Annotation.
+# Create Ingress that point to my BES and uses the reserved external IP via Annotation.
 kubectl create -f ingress.yaml
 #
 # Check policy in UI
