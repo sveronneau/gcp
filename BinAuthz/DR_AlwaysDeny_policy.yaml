@@ -1,0 +1,9 @@
+admissionWhitelistPatterns:
+- namePattern: gcr.io/google_containers/*
+- namePattern: gcr.io/google-containers/*
+- namePattern: k8s.gcr.io/*
+- namePattern: gcr.io/stackdriver-agents/*
+defaultAdmissionRule:
+  enforcementMode: DRYRUN_AUDIT_LOG_ONLY
+  evaluationMode: ALWAYS_DENY
+name: projects/PROJECT_ID/policy
