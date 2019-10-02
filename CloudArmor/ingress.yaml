@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: cloud-armor-how-to
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: "cloud-armor-how-to-address"
+spec:
+  backend:
+    serviceName: my-service
+    servicePort: 80
