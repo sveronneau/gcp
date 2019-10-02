@@ -16,4 +16,4 @@ nano policy.yaml
 # Dry-Run the policy (Deployment will work)
 gcloud container binauthz policy import policy.yaml
 #
-# Loook for dry-run in StackDriver Logging (Kubernetes Cluster / Filter: dry-run)
+# Look for dry-run in StackDriver Logging (Kubernetes Cluster / Filter: dry-run)
