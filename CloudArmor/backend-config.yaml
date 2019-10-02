@@ -1,0 +1,8 @@
+apiVersion: cloud.google.com/v1beta1
+kind: BackendConfig
+metadata:
+  namespace: cloud-armor-how-to
+  name: my-backend-config
+spec:
+  securityPolicy:
+    name: "ca-how-to-security-policy"
