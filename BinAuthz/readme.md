@@ -1,5 +1,5 @@
 # View current policy to YAML
-gcloud container binauthz policy export > org-policy.yaml
+gcloud container binauthz policy export > org-policy.yaml<br>
 gcloud container binauthz policy export > policy.yaml
 #
 # Check and edit policy.yaml<br>Change ALWAYS_ALLOW to ALWAYS_DENY
