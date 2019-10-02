@@ -6,3 +6,6 @@ metadata:
 spec:
   securityPolicy:
     name: "ca-how-to-security-policy"
+  sessionAffinity:
+    affinityType: "GENERATED_COOKIE"
+    affinityCookieTtlSec: 50
