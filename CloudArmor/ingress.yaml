@@ -5,6 +5,7 @@ metadata:
   name: my-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: "cloud-armor-how-to-address"
+    ingress.kubernetes.io/affinity: 'cookie'
 spec:
   backend:
     serviceName: my-service
