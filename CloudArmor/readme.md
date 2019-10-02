@@ -23,3 +23,12 @@ gcloud compute addresses create cloud-armor-how-to-address --global
 kubectl create -f ingress.yaml
 #
 # Check CA Policy Target in UI
+#
+# Clean Up
+kubectl delete ingress my-ingress --namespace cloud-armor-how-to<br>
+kubectl delete service my-service --namespace cloud-armor-how-to<br>
+kubectl delete backendconfig my-backend-config --namespace cloud-armor-how-to<br>
+kubectl delete deployment my-deployment --namespace cloud-armor-how-to<br>
+kubectl delete namespace cloud-armor-how-to<br>
+gcloud compute addresses delete cloud-armor-how-to-address --global<br>
+gcloud beta compute security-policies delete ca-how-to-security-policy
