@@ -12,6 +12,7 @@ gcloud beta compute security-policies rules create 1000 --security-policy ca-how
 kubectl apply -f backend-config.yaml
 #
 # Check Deployment and CA policy in UI
+#
 # Create Service with Annotation to BackEndconfig thus making the link between the BES and the CA Policy
 kubectl apply -f service.yaml
 #
