@@ -22,4 +22,4 @@ gcloud compute addresses create cloud-armor-how-to-address --global
 # Create Ingress that point to my BES and uses the reserved external IP via Annotation.
 kubectl create -f ingress.yaml
 #
-# Check policy in UI
+# Check CA Policy Target in UI
