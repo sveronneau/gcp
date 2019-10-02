@@ -15,3 +15,5 @@ nano policy.yaml
 #
 # Dry-Run the policy
 gcloud container binauthz policy import policy.yaml
+#
+# Deployment will owrk and the dry-run will show in Stackdriver logging (Kubernetes Cluster / Filter: dryn-run)
