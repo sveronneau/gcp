@@ -1,5 +1,6 @@
-# Export current policy to YAML
-gcloud container binauthz policy export  > policy.yaml
+# View current policy to YAML
+gcloud container binauthz policy export > org-policy.yaml
+gcloud container binauthz policy export > policy.yaml
 #
 # Check and edit policy.yaml<br>Change ALWAYS_ALLOW to ALWAYS_DENY
 nano policy.yaml
@@ -17,3 +18,6 @@ nano policy.yaml
 gcloud container binauthz policy import policy.yaml
 #
 # Look for dry-run in StackDriver Logging (Kubernetes Cluster / Filter: dry-run)
+#
+# Clean-Up
+gcloud container binauthz policy import org-policy.yaml
