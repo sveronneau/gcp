@@ -1,0 +1,9 @@
+mvn compile exec:java \
+-Dexec.mainClass=com.google.cloud.teleport.templates.WordCount \
+-Dexec.cleanupDaemonThreads=false \
+-Dexec.args=" \
+--project=stacyv-sandbox \
+--stagingLocation=gs://bucket_name/staging \
+--tempLocation=gs://bucket_name/temp \
+--templateLocation=gs://bucket_name/templates/wc.json \
+--runner=DataflowRunner"
