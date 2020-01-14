@@ -1,0 +1,50 @@
+# Creates a Persistent VM
+
+resources:
+- type: compute.v1.instance
+  name: vm-{{ env["deployment"] }}
+  properties:
+    zone: {{ properties["zone"] }}
+    # Note the machineType definition at the end. custom-4-5120 specifies 4 CPUs and 5GB (5120 MB) of RAM
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machinetype"] }}
+    metadata:
+      items:
+      - key: enable-oslogin
+        value: |
+          TRUE
+      - key: enable-oslogin-2fa
+        value: |
+          TRUE
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          INSTANCE=$(curl http://metadata.google.internal/computeMetadata/v1/instance/hostname -H "Metadata-Flavor: Google")
+          echo "<html><header><title>Hello from Deployment Manager!</title></header>
+          <body><h2>Hello from $INSTANCE</h2>
+          <p>Deployment Manager bids you good day!</p>
+          </body>
+          </html>" > index.html
+          python -m SimpleHTTPServer 80
+
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      initializeParams:
+        diskName: disk-{{ env["deployment"] }}
+        sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
+
+    networkInterfaces:
+    #- network: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/global/networks/tj4h-shared-services-xpn1
+    - subnetwork: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/regions/northamerica-northeast1/subnetworks/{{ properties["subnetwork"] }}
+
+      # Access Config required to give the instance a public IP address
+      #accessConfigs:
+      #- name: External NAT
+      #  type: ONE_TO_ONE_NAT
+
+# Declare outputs here
+#outputs:
+#- name: internalIp
+#  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0]accessConfigs[0].ip)
