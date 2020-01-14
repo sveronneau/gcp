@@ -1,0 +1,38 @@
+info:
+  title: Single Google Compute Engine Machine
+  author: Google Inc.
+  description: Creates a virtual machine based on zone and machine type selection.
+
+required:
+  - machinetype
+  - zone
+  - subnetwork
+
+properties:
+  machinetype:
+    title: Machine type
+    type: string
+    enum:
+      - n1-standard-1
+      - n1-standard-2
+      - n1-standard-4
+      - n1-highmem-2
+      - n1-highmem-4
+      - n1-highmem-8
+      - n1-highcpu-2
+      - n1-highcpu-4
+      - n1-highcpu-8
+      - f1-micro
+      - g1-small
+  subnetwork:
+    title: Reseau
+    type: string
+    enum:
+      - catalog (marche pas)
+      - tj4h-shared-services-xpn1-subnet1
+  zone:
+    title: Zone
+    type: string
+    enum:
+      - northamerica-northeast1-c
+      - europe-west1-d
