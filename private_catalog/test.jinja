@@ -45,6 +45,8 @@ resources:
       #  type: ONE_TO_ONE_NAT
 
 # Declare outputs here
-#outputs:
-#- name: internalIp
-#  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0]accessConfigs[0].ip)
+outputs:
+- name: internalIp
+  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
+- name: cliCommand
+  value: gcloud compute ssh $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP) --tunnel-through-iap
