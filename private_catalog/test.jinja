@@ -31,6 +31,9 @@ resources:
       type: PERSISTENT
       boot: true
       autoDelete: true
+      diskEncryptionKey:
+        kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
+        #kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/{{ env["keyring"] }}/cryptoKeys/{{ env["cryptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
         sourceImage: https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
