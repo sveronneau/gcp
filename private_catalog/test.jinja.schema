@@ -36,6 +36,16 @@ properties:
     enum:
       - northamerica-northeast1-c
       - europe-west1-d
+  keyring:
+    title: Global KeyRing
+    type: string
+    enum:
+      - one_ring_to_rule_them_all
+  cyptokey:
+    title: CryptoKey
+    type: string
+    enum:
+      - my_precious
 
 outputs:
   internalIp:
