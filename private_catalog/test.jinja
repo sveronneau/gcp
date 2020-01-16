@@ -52,4 +52,4 @@ outputs:
 - name: internalIp
   value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
 - name: cliCommand
-  value: gcloud compute ssh $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP) --tunnel-through-iap
+  value: gcloud compute ssh $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
