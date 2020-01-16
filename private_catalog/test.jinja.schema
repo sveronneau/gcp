@@ -48,9 +48,9 @@ properties:
       - my_precious
 
 outputs:
-  internalIp:
-    description: Internal RFC 1918 IP of the instance
-    type: string
   cliCommand:
     description: gcloud command to connect to instance
+    type: string
+  internalIp:
+    description: Internal RFC 1918 IP of the instance
     type: string
