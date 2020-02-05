@@ -49,7 +49,10 @@ resources:
 
 # Declare outputs here
 outputs:
+#- name: internalIp
+#  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
 - name: cliCommand
-  value: gcloud beta compute ssh $(ref.vm-{{ env["deployment"] }}
-- name: internalIp
-  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
+  value: ******* YOUR LOGIN INFO with Port FWD for RDP
+  value: *******
+  value: ******* gcloud beta compute ssh $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP) --internal-ip -- -L 3389:localhost:3389
+  value: *******
