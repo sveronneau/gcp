@@ -28,7 +28,6 @@ properties:
     title: Reseau
     type: string
     enum:
-      - catalog (marche pas)
       - tj4h-shared-services-xpn1-subnet1
   zone:
     title: Zone
@@ -36,6 +35,9 @@ properties:
     enum:
       - northamerica-northeast1-c
       - europe-west1-d
+  packages:
+    title: Install custom packages (separate them by a space)
+    type: string
   keyring:
     title: Global KeyRing
     type: string
