@@ -1,55 +1,55 @@
 # Creates a Persistent VM
 
-resources
-- type compute.v1.instance
-  name vm-ds-{{ env[deployment] }}
-  properties
-    zone {{ properties[zone] }}
+resources:
+- type: compute.v1.instance
+  name: vm-ds-{{ env["deployment"] }}
+  properties:
+    zone: {{ properties["zone"] }}
     # Note the machineType definition at the end. custom-4-5120 specifies 4 CPUs and 5GB (5120 MB) of RAM
-    machineType httpswww.googleapis.comcomputev1projects{{ env[project] }}zones{{ properties[zone] }}machineTypes{{ properties[machinetype] }}
-    labels
-      vm-type 'ai-user'
-    metadata
-      items
-      - key enable-oslogin
-        value 
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machinetype"] }}
+    labels:
+      vm-type: 'ai-user-work-vm'
+    metadata:
+      items:
+      - key: enable-oslogin
+        value: |
           TRUE
-      - key enable-oslogin-2fa
-        value 
+      - key: enable-oslogin-2fa
+        value: |
           TRUE
-      - key startup-script
-        value 
-          #!binbash
-          yum install -y {{ properties[packages] }}
-          #useradd -m scientist -p $(echo scientist  openssl passwd -1 -stdin)
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          yum install -y {{ properties["packages"] }}
+          #useradd -m scientist -p $(echo "scientist" | openssl passwd -1 -stdin)
 
-    disks
-    - deviceName boot
-      type PERSISTENT
-      boot true
-      autoDelete true
-      diskEncryptionKey
-        kmsKeyName projects{{ env[project] }}locationsglobalkeyRingsone_ring_to_rule_them_allcryptoKeysmy_precious
-        #kmsKeyName projects{{ env[project] }}locationsglobalkeyRings{{ env[keyring] }}cryptoKeys{{ env[cryptokey] }}
-      initializeParams
-        diskName disk-{{ env[deployment] }}
-        sourceImage projectstj4h-project2globalimagesds-vm-centos7-xrdp
-        #httpswww.googleapis.comcomputev1projectsdebian-cloudglobalimagesfamilydebian-9
+    disks:
+    - deviceName: boot
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      diskEncryptionKey:
+        kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
+        #kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/{{ env["keyring"] }}/cryptoKeys/{{ env["cryptokey"] }}"
+      initializeParams:
+        diskName: disk-{{ env["deployment"] }}
+        sourceImage: "projects/tj4h-project2/global/images/ds-vm-centos7-xrdp"
+        #https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
 
-    networkInterfaces
-    #- network httpswww.googleapis.comcomputev1projectstj4h-shared-servicesglobalnetworkstj4h-shared-services-xpn1
-    - subnetwork httpswww.googleapis.comcomputev1projectstj4h-shared-servicesregionsnorthamerica-northeast1subnetworks{{ properties[subnetwork] }}
+    networkInterfaces:
+    #- network: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/global/networks/tj4h-shared-services-xpn1
+    - subnetwork: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/regions/northamerica-northeast1/subnetworks/{{ properties["subnetwork"] }}
 
       # Access Config required to give the instance a public IP address
-      accessConfigs
-      - name External NAT
-        type ONE_TO_ONE_NAT
+      accessConfigs:
+      - name: External NAT
+        type: ONE_TO_ONE_NAT
 
 # Declare outputs here
-outputs
-#- name internalIp
-#  value $(ref.vm-{{ env[deployment] }}.networkInterfaces[0].networkIP)
-#  value gcloud beta compute ssh $(ref.vm-{{ env[deployment] }}.networkInterfaces[0].networkIP) --internal-ip -- -L 3389localhost3389
-- name cliCommand
-  description YOUR LOGIN INFO
-  value gcloud beta compute ssh vm-{{ env[deployment] }} --internal-ip --zone {{ properties[zone] }} -- -L 3389localhost3389
+outputs:
+#- name: internalIp
+#  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
+#  value: gcloud beta compute ssh $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP) --internal-ip -- -L 3389:localhost:3389
+- name: cliCommand
+  description: YOUR LOGIN INFO
+  value: gcloud beta compute ssh vm-{{ env["deployment"] }} --internal-ip --zone {{ properties["zone"] }} -- -L 3389:localhost:3389
