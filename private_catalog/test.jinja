@@ -7,11 +7,11 @@ resources:
     zone: {{ properties["zone"] }}
     # Note the machineType definition at the end. custom-4-5120 specifies 4 CPUs and 5GB (5120 MB) of RAM
     machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machinetype"] }}
+    labels:
+      vm-user: {{ env["username"] }}
+      project: {{ env["project"] }}
+      ai-vm: yes
     metadata:
-      labels:
-        vm-user: {{ env["username"] }}
-        project: {{ env["project"] }}
-        ai-vm: yes
       items:
       - key: enable-oslogin
         value: |
