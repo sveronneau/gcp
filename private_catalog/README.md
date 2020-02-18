@@ -10,11 +10,11 @@ To limit a user access rights while giving them acces to the catalog, you'll nee
 * Service Account User
 * IAP-secured Tunnel User
 * A CUSTOM ROLE WITH THE FOLLOWING ROLES
- * compute.instances.setMetadata
- * compute.instances.start
- * compute.instances.stop
- * deploymentmanager.deployments.create
- * deploymentmanager.deployments.delete
- * deploymentmanager.deployments.get
- * deploymentmanager.deployments.list
- * deploymentmanager.deployments.stop
+  * compute.instances.setMetadata
+  * compute.instances.start
+  * compute.instances.stop
+  * deploymentmanager.deployments.create
+  * deploymentmanager.deployments.delete
+  * deploymentmanager.deployments.get
+  * deploymentmanager.deployments.list
+  * deploymentmanager.deployments.stop
