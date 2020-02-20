@@ -2,14 +2,14 @@
 
 resources:
 - type: compute.v1.instance
-  name: vm-ds-{{ env["deployment"] }}
+  name: vm-ds-{{ env["deployment"] }} # VM and Deployment Name will be vm-ds-VAR
   properties:
-    zone: {{ properties["zone"] }}
-    # Note the machineType definition at the end. custom-4-5120 specifies 4 CPUs and 5GB (5120 MB) of RAM
+    zone: {{ properties["zone"] }} # Network zone chosen    
+    # 
     machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machinetype"] }}
-    labels:
+    labels: # use label if needed
       vm-type: 'ai-user-work-vm'
-    metadata:
+    metadata: # enable OS Login, 2FA and also install custom paxckages from input
       items:
       - key: enable-oslogin
         value: |
@@ -21,35 +21,32 @@ resources:
         value: |
           #!/bin/bash
           yum install -y {{ properties["packages"] }}
-          #useradd -m scientist -p $(echo "scientist" | openssl passwd -1 -stdin)
 
     disks:
     - deviceName: boot
       type: PERSISTENT
       boot: true
       autoDelete: true
-      diskEncryptionKey:
-        kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
+      #diskEncryptionKey: # if you want to use CMEK
         #kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/{{ env["keyring"] }}/cryptoKeys/{{ env["cryptokey"] }}"
+        ### Sample kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
+        
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
+        # Golden image location.  In our case its in another project who holds all the images
         sourceImage: "projects/tj4h-project2/global/images/ds-vm-centos7-xrdp"
-        #https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
+                     #https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
 
-    networkInterfaces:
-    #- network: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/global/networks/tj4h-shared-services-xpn1
-    - subnetwork: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/regions/northamerica-northeast1/subnetworks/{{ properties["subnetwork"] }}
+    networkInterfaces:  #use shared VPC or not. Full path is important
+    - subnetwork: https://www.googleapis.com/compute/v1/projects/PROJECT_NAME/regions/REGION_NAME/subnetworks/{{ properties["subnetwork"] }}
 
       # Access Config required to give the instance a public IP address
       accessConfigs:
       - name: External NAT
         type: ONE_TO_ONE_NAT
 
-# Declare outputs here
+# Ouputs the CLI command to GCLOUD SSH to the instance.  This shows in the LAYOUT section of th dpeloyment.
 outputs:
-#- name: internalIp
-#  value: $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP)
-#  value: gcloud beta compute ssh $(ref.vm-{{ env["deployment"] }}.networkInterfaces[0].networkIP) --internal-ip -- -L 3389:localhost:3389
 - name: cliCommand
   description: YOUR LOGIN INFO
   value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --internal-ip --zone {{ properties["zone"] }} -- -L 2222:localhost:3389
