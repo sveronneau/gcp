@@ -1,7 +1,6 @@
 info:
   title: Single Google Compute Engine Machine
-  author: Google Inc.
-  description: Creates a virtual machine based on zone and machine type selection.
+  description: Creates a virtual machine based on name, machine type, zone, subnetwork, custom CentOS packages, keyring and key selection.
 
 required:
   - machinetype
@@ -36,7 +35,7 @@ properties:
       - northamerica-northeast1-c
       - europe-west1-d
   packages:
-    title: Install custom packages (separate them by a space)
+    title: Install CentOS7 packages (separate them by a space)
     type: string
   keyring:
     title: Global KeyRing
