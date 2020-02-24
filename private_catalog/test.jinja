@@ -6,6 +6,9 @@ resources:
   properties:
     sizeGb: 30
     zone: {{ properties["zone"] }}
+    diskEncryptionKey:
+      kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
+      
 - type: compute.v1.instance
   name: vm-ds-{{ env["deployment"] }}
   properties:
@@ -43,6 +46,7 @@ resources:
       boot: false
       autoDelete: true
       source: $(ref.disk-{{ env["deployment"] }}-data.selfLink)
+
     networkInterfaces:
     #- network: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/global/networks/tj4h-shared-services-xpn1
     - subnetwork: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/regions/northamerica-northeast1/subnetworks/{{ properties["subnetwork"] }}
