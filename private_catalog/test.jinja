@@ -21,7 +21,6 @@ resources:
         value: |
           #!/bin/bash
           yum install -y {{ properties["packages"] }}
-
     disks:
     - deviceName: boot
       type: PERSISTENT
@@ -29,14 +28,17 @@ resources:
       autoDelete: true
       #diskEncryptionKey: # if you want to use CMEK
         #kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/{{ env["keyring"] }}/cryptoKeys/{{ env["cryptokey"] }}"
-        ### Sample kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
-        
+        ### Sample kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"        
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
         # Golden image location.  In our case its in another project who holds all the images
         sourceImage: "projects/tj4h-project2/global/images/ds-vm-centos7-xrdp"
                      #https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
-
+    - deviceName: disk-{{ env["deployment"] }}-data
+      type: gcp-types/compute-v1:disks
+      zone: {{ properties["zone"] }}
+      sizeGb: 10
+      
     networkInterfaces:  #use shared VPC or not. Full path is important
     - subnetwork: https://www.googleapis.com/compute/v1/projects/PROJECT_NAME/regions/REGION_NAME/subnetworks/{{ properties["subnetwork"] }}
 
