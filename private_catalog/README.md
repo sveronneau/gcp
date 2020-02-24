@@ -4,7 +4,6 @@ Zip the 2 files together under the name test.zip to use in GCP Private Catalog
 
 To limit a user access rights while giving them acces to the catalog, you'll need to assign the following roles:
 
-* Custom-AI-PrivateCatalogUser-DM-VM
 * Compute OS Login
 * Compute Viewer
 * Service Account User
