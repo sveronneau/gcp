@@ -1,10 +1,18 @@
-# Creates a Persistent VM with external data drive both with CMEK.  also used of shared VPC and labels.
+# Creates a Persistent VM with external data and swap drives both with CMEK.  We also used of shared VPC and labels.
 
 resources:
 - type: compute.v1.disk
   name: disk-{{ env["deployment"] }}-data
   properties:
     sizeGb: 30
+    zone: {{ properties["zone"] }}
+    diskEncryptionKey:
+      kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
+
+- type: compute.v1.disk
+  name: disk-{{ env["deployment"] }}-swap
+  properties:
+    sizeGb: 5
     zone: {{ properties["zone"] }}
     diskEncryptionKey:
       kmsKeyName: "projects/{{ env["project"] }}/locations/global/keyRings/one_ring_to_rule_them_all/cryptoKeys/my_precious"
@@ -42,10 +50,16 @@ resources:
         diskName: disk-{{ env["deployment"] }}
         sourceImage: "projects/tj4h-project2/global/images/ds-vm-centos7-xrdp"
         #https://www.googleapis.com/compute/v1/projects/debian-cloud/global/images/family/debian-9
+
     - deviceName: disk-{{ env["deployment"] }}-data
       boot: false
       autoDelete: true
       source: $(ref.disk-{{ env["deployment"] }}-data.selfLink)
+
+    - deviceName: disk-{{ env["deployment"] }}-swap
+      boot: false
+      autoDelete: true
+      source: $(ref.disk-{{ env["deployment"] }}-swap.selfLink)
 
     networkInterfaces:
     #- network: https://www.googleapis.com/compute/v1/projects/tj4h-shared-services/global/networks/tj4h-shared-services-xpn1
