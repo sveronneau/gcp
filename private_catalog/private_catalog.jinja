@@ -1,4 +1,6 @@
 # Creates a Persistent VM with external data and swap drives both with CMEK.  We also used of shared VPC and labels.
+#
+{% set image_project_id = 'tj4h-project2' %}
 
 resources:
 - type: compute.v1.disk
