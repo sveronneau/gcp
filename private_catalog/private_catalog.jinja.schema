@@ -46,6 +46,10 @@ properties:
     enum:
       - northamerica-northeast1-c
       - europe-west1-d
+  xpn_region:
+    title: Zone
+    type: string
+    default: northamerica-northeast1
   packages:
     title: Install CentOS7 packages (separate them by a space)
     type: string
