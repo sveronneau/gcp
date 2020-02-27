@@ -24,9 +24,9 @@ properties:
       - n1-highcpu-8
       - f1-micro
       - g1-small
-  #image_project_id:
-  #  type: string
-  #  default: tj4h-project2
+  image_project_id:
+    type: string
+    default: tj4h-project2
   image_name:
     type: string
     default: ds-vm-centos7-xrdp
