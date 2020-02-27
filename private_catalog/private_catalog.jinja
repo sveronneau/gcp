@@ -5,7 +5,7 @@ resources:
   name: disk-{{ env["deployment"] }}-data
   properties:
     sizeGb: 30
-    zone: {{ properties["zone"] }}
+    zone: {{ properties["xpn_zone"] }}
     diskEncryptionKey:
       kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
 
@@ -13,15 +13,15 @@ resources:
   name: disk-{{ env["deployment"] }}-swap
   properties:
     sizeGb: 5
-    zone: {{ properties["zone"] }}
+    zone: {{ properties["xpn_zone"] }}
     diskEncryptionKey:
       kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
 
 - type: compute.v1.instance
   name: vm-ds-{{ env["deployment"] }}
   properties:
-    zone: {{ properties["zone"] }}
-    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/{{ properties["machinetype"] }}
+    zone: {{ properties["xpn_zone"] }}
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["xpn_zone"] }}/machineTypes/{{ properties["machinetype"] }}
     labels:
       vm-type: 'ai-user-work-vm'
     metadata:
@@ -70,4 +70,4 @@ resources:
 outputs:
 - name: cliCommand
   description: YOUR LOGIN INFO
-  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --internal-ip --zone {{ properties["zone"] }} -- -L 2222:localhost:3389
+  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --internal-ip --zone {{ properties["xpn_zone"] }} -- -L 2222:localhost:3389

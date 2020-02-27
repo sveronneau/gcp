@@ -1,6 +1,6 @@
 info:
   title: Single Google Compute Engine Machine
-  description: Creates a virtual machine based on name, machine type, zone, subnetwork, custom CentOS packages, keyring and key selection.  Use the DEFAULT value to set the value used in the template
+  description: Creates a virtual machine based on name, machine type, zone, subnetwork, custom CentOS packages, keyring and key selection.  Use the DEFAULT value to set the value used in the template.
 
 required:
   - machinetype
