@@ -24,16 +24,22 @@ properties:
       - n1-highcpu-8
       - f1-micro
       - g1-small
+  image_project_id:
+    type: string
+    default: tj4h-project2
+  image_name:
+    type: string
+    default: ds-vm-centos7-xrdp  
   xpn_project_id:
     type: string
     default: tj4h-shared-services
-  subnetwork:
+  xpn_subnetwork:
     title: Reseau
     type: string
     default: tj4h-shared-services-xpn1-subnet1
     enum:
       - tj4h-shared-services-xpn1-subnet1
-  zone:
+  xpn_zone:
     title: Zone
     type: string
     default: northamerica-northeast1-c
@@ -44,14 +50,14 @@ properties:
     title: Install CentOS7 packages (separate them by a space)
     type: string
   kms_project_id:
-    title: KMS Project ID
+    description: KMS Project ID
     type: string
     default: tj4h-project1
   keyring:
-    title: Global KeyRing
+    description: Global KeyRing
     type: string
     default: one_ring_to_rule_them_all
   cyptokey:
-    title: CryptoKey
+    description: CryptoKey
     type: string
     default: my_precious
