@@ -4,8 +4,8 @@ info:
 
 required:
   - machinetype
-  - zone
-  - subnetwork
+  - xpn_zone
+  - xpn_subnetwork
 
 properties:
   machinetype:
