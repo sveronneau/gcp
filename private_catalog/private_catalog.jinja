@@ -1,6 +1,7 @@
 # Creates a Persistent VM with external data and swap drives both with CMEK.  We also used of shared VPC and labels.
 #
-{% set image_project_id = 'tj4h-project2' %}
+#
+{% include "private_catalog_vars.jinja" %}
 
 resources:
 - type: compute.v1.disk
@@ -48,7 +49,7 @@ resources:
         kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
-        sourceImage: "projects/{{ properties["image_project_id"] }}/global/images/{{ properties["image_name"] }}"
+        sourceImage: "projects/{{image_project_id}}/global/images/{{ properties["image_name"] }}"
 
     - deviceName: disk-{{ env["deployment"] }}-data
       boot: false
