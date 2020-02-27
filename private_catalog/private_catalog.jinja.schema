@@ -1,6 +1,6 @@
 info:
   title: Single Google Compute Engine Machine
-  description: Creates a virtual machine based on name, machine type, zone, subnetwork, custom CentOS packages, keyring and key selection.
+  description: Creates a virtual machine based on name, machine type, zone, subnetwork, custom CentOS packages, keyring and key selection.  Use the DEFAULT value to set the value used in the template
 
 required:
   - machinetype
@@ -29,7 +29,7 @@ properties:
     default: tj4h-project2
   image_name:
     type: string
-    default: ds-vm-centos7-xrdp  
+    default: ds-vm-centos7-xrdp
   xpn_project_id:
     type: string
     default: tj4h-shared-services
