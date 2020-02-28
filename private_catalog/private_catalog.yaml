@@ -1,8 +1,8 @@
 imports:
-  - path: private_catalog.jinja
+- path: private_catalog.jinja
 
 resources:
- - name: private_catalog
-   type: private_catalog.jinja
-   properties:
+- name: private_catalog
+  type: private_catalog.jinja
+  properties:
     image_project_id: tj4h-project2
