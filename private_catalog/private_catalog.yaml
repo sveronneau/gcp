@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-configVersion: v2beta
+configVersion: v1
 
 imports:
 - path: private_catalog.jinja
