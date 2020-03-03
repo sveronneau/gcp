@@ -70,4 +70,4 @@ resources:
 outputs:
 - name: cliCommand
   description: YOUR LOGIN INFO
-  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --internal-ip --zone {{ properties["xpn_zone"] }} -- -L 2222:localhost:3389
+  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --tunnel-through-iap --zone {{ properties["xpn_zone"] }} -- -L 2222:localhost:3389
