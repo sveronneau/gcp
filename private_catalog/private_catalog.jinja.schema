@@ -26,26 +26,22 @@ properties:
       - g1-small
   image_project_id:
     type: string
-    default: tj4h-project2
+    default: bnc-shared-images
   image_name:
     type: string
-    default: ds-vm-centos7-xrdp
+    default: nbc-9202-npr-stg-centos-7-ai-v202003010551
+    #nbc-9202-npr-stg-centos-7-ai
   xpn_project_id:
     type: string
-    default: tj4h-shared-services
+    default: host-vpc-nonprod
   xpn_subnetwork:
     title: Reseau
     type: string
-    default: tj4h-shared-services-xpn1-subnet1
-    enum:
-      - tj4h-shared-services-xpn1-subnet1
+    default: nonprod-mtl-dmz-fm
   xpn_zone:
     title: Zone
     type: string
     default: northamerica-northeast1-c
-    enum:
-      - northamerica-northeast1-c
-      - europe-west1-d
   xpn_region:
     title: Zone
     type: string
@@ -53,15 +49,15 @@ properties:
   packages:
     title: Install CentOS7 packages (separate them by a space)
     type: string
-  kms_project_id:
-    description: KMS Project ID
-    type: string
-    default: tj4h-project1
-  keyring:
-    description: Global KeyRing
-    type: string
-    default: one_ring_to_rule_them_all
-  cyptokey:
-    description: CryptoKey
-    type: string
-    default: my_precious
+#  kms_project_id:
+#    description: KMS Project ID
+#    type: string
+#    default: tj4h-project1
+#  keyring:
+#    description: Global KeyRing
+#    type: string
+#    default: one_ring_to_rule_them_all
+#  cyptokey:
+#    description: CryptoKey
+#    type: string
+#    default: my_precious

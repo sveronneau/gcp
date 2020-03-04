@@ -6,16 +6,16 @@ resources:
   properties:
     sizeGb: 30
     zone: {{ properties["xpn_zone"] }}
-    diskEncryptionKey:
-      kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+    #diskEncryptionKey:
+    #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
 
 - type: compute.v1.disk
   name: disk-{{ env["deployment"] }}-swap
   properties:
     sizeGb: 5
     zone: {{ properties["xpn_zone"] }}
-    diskEncryptionKey:
-      kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+    #diskEncryptionKey:
+    #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
 
 - type: compute.v1.instance
   name: vm-ds-{{ env["deployment"] }}
@@ -42,8 +42,8 @@ resources:
       type: PERSISTENT
       boot: true
       autoDelete: true
-      diskEncryptionKey:
-        kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+      #diskEncryptionKey:
+      #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
         sourceImage: "projects/{{ properties["image_project_id"] }}/global/images/{{ properties["image_name"] }}"
@@ -70,4 +70,4 @@ resources:
 outputs:
 - name: cliCommand
   description: YOUR LOGIN INFO
-  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --internal-ip --zone {{ properties["xpn_zone"] }} -- -L 2222:localhost:3389
+  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --tunnel-through-iap --zone {{ properties["xpn_zone"] }} -- -L 2222:localhost:3389
