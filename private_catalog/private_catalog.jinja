@@ -19,6 +19,13 @@ resources:
 
 - type: compute.v1.instance
   name: vm-ds-{{ env["deployment"] }}
+  accessControl:
+    gcpIamPolicy:
+      bindings:
+      - role: roles/compute.osLogin
+        members:
+        - "users:"{{ env["username"] }}"
+
   properties:
     serviceAccounts:
     - email: {{ env['project_number'] }}-compute@developer.gserviceaccount.com
