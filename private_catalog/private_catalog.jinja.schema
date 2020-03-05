@@ -27,10 +27,9 @@ properties:
   image_project_id:
     type: string
     default: bnc-shared-images
-  image_name:
+  image_family:
     type: string
-    default: nbc-9202-npr-stg-centos-7-ai-v202003010551
-    #nbc-9202-npr-stg-centos-7-ai
+    default: dm-vm
   xpn_project_id:
     type: string
     default: host-vpc-nonprod

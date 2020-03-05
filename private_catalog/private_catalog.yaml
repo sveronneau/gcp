@@ -23,7 +23,7 @@ resources:
   properties:
     machinetype: n1-standard-4
     image_project_id: bnc-shared-images
-    image_name: nbc-9202-npr-stg-centos-7-ai
+    image_family: dm-vm
     xpn_project_id: host-vpc-nonprod
     xpn_subnetwork: nonprod-mtl-dmz-fm
     xpn_zone: northamerica-northeast1-c
