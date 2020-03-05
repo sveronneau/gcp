@@ -53,7 +53,7 @@ resources:
       #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
-        sourceImage: "projects/{{ properties["image_project_id"] }}/global/images/family/{{ properties["image_family] }}"
+        sourceImage: "projects/{{ properties["image_project_id"] }}/global/images/family/{{ properties["image_family"] }}"
 
     - deviceName: disk-{{ env["deployment"] }}-data
       boot: false
