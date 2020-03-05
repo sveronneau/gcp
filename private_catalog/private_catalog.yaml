@@ -28,7 +28,6 @@ resources:
     xpn_subnetwork: nonprod-mtl-dmz-fm
     xpn_zone: northamerica-northeast1-c
     xpn_region: northamerica-northeast1
-    oslogin_2fa: true
     #kms_project_id: tj4h-project1
     #keyring: one_ring_to_rule_them_all
     #cryptokey: my_precious

@@ -36,9 +36,11 @@ resources:
     metadata:
       items:
       - key: enable-oslogin
-        value: {{ properties["oslogin_2fa"] }}
+        value: |
+          true
       - key: enable-oslogin-2fa
-        value: {{ properties["oslogin_2fa"] }}
+        value: |
+          true
       - key: startup-script
         value: |
           #!/bin/bash
