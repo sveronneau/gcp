@@ -24,6 +24,9 @@ properties:
       - n1-highcpu-8
       - f1-micro
       - g1-small
+  oslogin_2fa:
+    type: string
+    default: true
   image_project_id:
     type: string
     default: bnc-shared-images

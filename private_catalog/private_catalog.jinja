@@ -35,12 +35,10 @@ resources:
       vm-type: 'ai-user-work-vm'
     metadata:
       items:
-    #  - key: enable-oslogin
-    #    value: |
-    #      TRUE
-    #  - key: enable-oslogin-2fa
-    #    value: |
-    #      TRUE
+      - key: enable-oslogin
+        value: {{ properties["oslogin_2fa"] }}
+      - key: enable-oslogin-2fa
+        value: {{ properties["oslogin_2fa"] }}
       - key: startup-script
         value: |
           #!/bin/bash
