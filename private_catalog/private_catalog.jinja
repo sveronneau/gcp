@@ -21,7 +21,7 @@ resources:
   name: vm-ds-{{ env["deployment"] }}
   properties:
     serviceAccounts:
-    - email: {{ properties["service_accounts"] }}
+    - email: {{ env['project_number'] }}-compute@developer.gserviceaccount.com
       scopes:
       - https://www.googleapis.com/auth/devstorage.read_only
       - https://www.googleapis.com/auth/logging.write
@@ -35,12 +35,12 @@ resources:
       vm-type: 'ai-user-work-vm'
     metadata:
       items:
-      - key: enable-oslogin
-        value: |
-          TRUE
-      - key: enable-oslogin-2fa
-        value: |
-          TRUE
+    #  - key: enable-oslogin
+    #    value: |
+    #      TRUE
+    #  - key: enable-oslogin-2fa
+    #    value: |
+    #      TRUE
       - key: startup-script
         value: |
           #!/bin/bash
