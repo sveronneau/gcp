@@ -46,7 +46,7 @@ properties:
     type: string
     default: northamerica-northeast1-c
   xpn_region:
-    title: Zone
+    title: Region
     type: string
     default: northamerica-northeast1
   packages:
