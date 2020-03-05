@@ -24,6 +24,9 @@ properties:
       - n1-highcpu-8
       - f1-micro
       - g1-small
+  service_accounts:
+    type: string
+    default: 76266570182-compute@developer.gserviceaccount.com
   image_project_id:
     type: string
     default: bnc-shared-images

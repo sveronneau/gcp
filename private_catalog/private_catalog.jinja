@@ -20,6 +20,7 @@ resources:
 - type: compute.v1.instance
   name: vm-ds-{{ env["deployment"] }}
   properties:
+    serviceAccounts: {{ properties["service_accounts"] }}
     zone: {{ properties["xpn_zone"] }}
     machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["xpn_zone"] }}/machineTypes/{{ properties["machinetype"] }}
     labels:
