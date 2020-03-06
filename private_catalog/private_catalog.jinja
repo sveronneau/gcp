@@ -6,16 +6,16 @@ resources:
   properties:
     sizeGb: 30
     zone: {{ properties["xpn_zone"] }}
-    #diskEncryptionKey:
-    #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+    diskEncryptionKey:
+      kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
 
 - type: compute.v1.disk
   name: disk-{{ env["deployment"] }}-swap
   properties:
     sizeGb: 5
     zone: {{ properties["xpn_zone"] }}
-    #diskEncryptionKey:
-    #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+    diskEncryptionKey:
+      kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
 
 - type: compute.v1.instance
   name: vm-ds-{{ env["deployment"] }}
@@ -76,8 +76,8 @@ resources:
       type: PERSISTENT
       boot: true
       autoDelete: true
-      #diskEncryptionKey:
-      #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+      diskEncryptionKey:
+        kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
         sourceImage: "projects/{{ properties["image_project_id"] }}/global/images/family/{{ properties["image_family"] }}"

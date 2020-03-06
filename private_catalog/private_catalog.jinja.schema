@@ -27,19 +27,19 @@ properties:
   image_project_id:
     title: Image Family Project ID
     type: string
-    default: bnc-shared-images
+    default: tj4h-project2
   image_family:
     title: Image Family
     type: string
-    default: dm-vm
+    default: ds-vm
   xpn_project_id:
     title: VPC Project ID
     type: string
-    default: host-vpc-nonprod
+    default: tj4h-shared-services
   xpn_subnetwork:
     title: VPC
     type: string
-    default: nonprod-mtl-dmz-fm
+    default: tj4h-shared-services-xpn1-subnet1
   xpn_zone:
     title: VPC Zone
     type: string
@@ -51,15 +51,15 @@ properties:
   packages:
     title: Install CentOS7 packages (separate them by a space)
     type: string
-#  kms_project_id:
-#    description: KMS Project ID
-#    type: string
-#    default: tj4h-project1
-#  keyring:
-#    description: Global KeyRing
-#    type: string
-#    default: one_ring_to_rule_them_all
-#  cyptokey:
-#    description: CryptoKey
-#    type: string
-#    default: my_precious
+  kms_project_id:
+    description: KMS Project ID
+    type: string
+    default: tj4h-project1
+  keyring:
+    description: Global KeyRing
+    type: string
+    default: one_ring_to_rule_them_all
+  cyptokey:
+    description: CryptoKey
+    type: string
+    default: my_precious
