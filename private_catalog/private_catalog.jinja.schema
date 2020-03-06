@@ -25,24 +25,27 @@ properties:
       - f1-micro
       - g1-small
   image_project_id:
+    title: Image Family Project ID
     type: string
     default: bnc-shared-images
   image_family:
+    title: Image Family
     type: string
     default: dm-vm
   xpn_project_id:
+    title: VPC Project ID
     type: string
     default: host-vpc-nonprod
   xpn_subnetwork:
-    title: Reseau
+    title: VPC
     type: string
     default: nonprod-mtl-dmz-fm
   xpn_zone:
-    title: Zone
+    title: VPC Zone
     type: string
     default: northamerica-northeast1-c
   xpn_region:
-    title: Region
+    title: VPC Region
     type: string
     default: northamerica-northeast1
   packages:

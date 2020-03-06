@@ -50,6 +50,26 @@ resources:
         value: |
           #!/bin/bash
           yum install -y {{ properties["packages"] }}
+          if sudo blkid /dev/sdc;then
+              exit
+          else
+              sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdc; \
+              echo UUID=`sudo blkid -s UUID -o value /dev/sdc` /swap ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
+
+              echo -e "n\n\n\n\n\nw\n" | sudo fdisk /dev/sdc
+              sudo mkswap /dev/sdc1
+              sudo swapon /dev/sdc1
+              echo UUID=`sudo blkid -s UUID -o value /dev/sdc1` none swap defaults 0 0 | sudo tee -a /etc/fstab
+          fi
+
+          if sudo blkid /dev/sdb;then
+              exit
+          else
+              sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb; \
+              sudo mkdir -p /data
+              sudo mount -o discard,defaults /dev/sdb /data
+              echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /data ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
+          fi
 
     disks:
     - deviceName: boot
