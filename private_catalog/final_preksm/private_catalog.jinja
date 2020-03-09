@@ -1,0 +1,113 @@
+# Creates a Persistent VM with external data and swap drives both with CMEK.  We also used of shared VPC and labels.
+
+resources:
+- type: compute.v1.disk
+  name: disk-{{ env["deployment"] }}-data
+  properties:
+    sizeGb: 30
+    zone: northamerica-northeast1-c
+    #diskEncryptionKey:
+    #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+
+- type: compute.v1.disk
+  name: disk-{{ env["deployment"] }}-swap
+  properties:
+    sizeGb: 5
+    zone: northamerica-northeast1-c
+    #diskEncryptionKey:
+    #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+
+- type: compute.v1.instance
+  name: vm-ds-{{ env["deployment"] }}
+  properties:
+    zone: northamerica-northeast1-c
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/northamerica-northeast1-c/machineTypes/{{ properties["machinetype"] }}
+    labels:
+      vm-type: 'ai-user-work-vm'
+    metadata:
+      items:
+      - key: enable-oslogin
+        value: "TRUE"
+      - key: enable-oslogin-2fa
+        value: "TRUE"
+      - key: startup-script
+        value: |
+          #!/bin/bash
+          if sudo blkid /dev/sdc;then
+              exit
+          else
+              sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdc; \
+              echo UUID=`sudo blkid -s UUID -o value /dev/sdc` /swap ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
+
+              echo -e "n\n\n\n\n\nw\n" | sudo fdisk /dev/sdc
+              sudo mkswap /dev/sdc1
+              sudo swapon /dev/sdc1
+              echo UUID=`sudo blkid -s UUID -o value /dev/sdc1` none swap defaults 0 0 | sudo tee -a /etc/fstab
+          fi
+
+          if sudo blkid /dev/sdb;then
+              exit
+          else
+              sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb; \
+              sudo mkdir -p /data
+              sudo mount -o discard,defaults /dev/sdb /data
+              echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /data ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
+          fi
+
+    serviceAccounts:
+      - email: private-compute-sa@{{ env["project"] }}.iam.gserviceaccount.com
+        scopes:
+        - https://www.googleapis.com/auth/devstorage.read_only
+        - https://www.googleapis.com/auth/logging.write
+        - https://www.googleapis.com/auth/monitoring.write
+        - https://www.googleapis.com/auth/servicecontrol
+        - https://www.googleapis.com/auth/service.management.readonly
+        - https://www.googleapis.com/auth/trace.append
+
+    disks:
+    - deviceName: vm-ds-{{ env["deployment"] }}
+      type: PERSISTENT
+      boot: true
+      autoDelete: true
+      #diskEncryptionKey:
+      #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
+      initializeParams:
+        diskName: disk-{{ env["deployment"] }}
+        sourceImage: "projects/bnc-shared-images/global/images/family/nbc-9202-npr-stg-centos-7-ai"
+
+    - deviceName: disk-{{ env["deployment"] }}-data
+      boot: false
+      autoDelete: true
+      source: $(ref.disk-{{ env["deployment"] }}-data.selfLink)
+
+    - deviceName: disk-{{ env["deployment"] }}-swap
+      boot: false
+      autoDelete: true
+      source: $(ref.disk-{{ env["deployment"] }}-swap.selfLink)
+
+    networkInterfaces:
+    - subnetwork: https://www.googleapis.com/compute/v1/projects/host-vpc-nonprod/regions/northamerica-northeast1/subnetworks/nonprod-mtl-priv-sidc
+
+      # Access Config required to give the instance a public IP address
+      #accessConfigs:
+      #- name: External NAT
+      #  type: ONE_TO_ONE_NAT
+
+  accessControl:
+    gcpIamPolicy:
+      bindings:
+      - role: projects/{{ env["project"] }}/roles/CustomRole256
+        members:
+        - "user:{{ env["username"] }}"
+
+# Declare outputs here
+outputs:
+- name: cliCommand
+  description: CMD LOGIN VM
+  value: gcloud beta compute ssh vm-ds-{{ env["deployment"] }} --internal-ip --zone northamerica-northeast1-c -- -L 2222:localhost:3389
+- name: machineType
+  description: CMD Start VM
+  value: gcloud compute instances start vm-ds-{{ env["deployment"] }} --zone northamerica-northeast1-c
+- name: machineType
+  description: CMD Stop VM
+  value: gcloud compute instances stop vm-ds-{{ env["deployment"] }} --zone northamerica-northeast1-c
