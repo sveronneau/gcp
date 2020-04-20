@@ -23,7 +23,7 @@ resources:
     zone: northamerica-northeast1-c
     machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/northamerica-northeast1-c/machineTypes/{{ properties["machinetype"] }}
     labels:
-      vm-type: 'ai-user-work-vm'
+      vm-type: 'my-little-vm-pc'
     metadata:
       items:
       - key: enable-oslogin
@@ -73,7 +73,7 @@ resources:
       #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
-        sourceImage: "projects/bnc-shared-images/global/images/family/nbc-9202-npr-stg-centos-7-ai"
+        sourceImage: "projects/ubuntu-os-cloud/global/family/ubuntu-1910"
 
     - deviceName: disk-{{ env["deployment"] }}-data
       boot: false
@@ -86,7 +86,7 @@ resources:
       source: $(ref.disk-{{ env["deployment"] }}-swap.selfLink)
 
     networkInterfaces:
-    - subnetwork: https://www.googleapis.com/compute/v1/projects/host-vpc-nonprod/regions/northamerica-northeast1/subnetworks/nonprod-mtl-priv-sidc
+    - subnetwork: https://www.googleapis.com/compute/v1/projects/tj4h-shared/regions/northamerica-northeast1/subnetworks/default
 
       # Access Config required to give the instance a public IP address
       #accessConfigs:
@@ -96,7 +96,7 @@ resources:
   accessControl:
     gcpIamPolicy:
       bindings:
-      - role: projects/{{ env["project"] }}/roles/CustomRole256
+      - role: projects/{{ env["project"] }}/roles/tj4h-shared-custom
         members:
         - "user:{{ env["username"] }}"
 

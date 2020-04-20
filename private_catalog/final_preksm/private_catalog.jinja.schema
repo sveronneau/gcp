@@ -9,7 +9,7 @@ properties:
   machinetype:
     title: Machine type
     type: string
-    default: n1-highmem-4
+    default: g1-small
     enum:
       - n1-standard-1
       - n1-standard-2
