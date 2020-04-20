@@ -73,7 +73,7 @@ resources:
       #  kmsKeyName: "projects/{{ properties["kms_project_id"] }}/locations/global/keyRings/{{ properties["keyring"] }}/cryptoKeys/{{ properties["cyptokey"] }}"
       initializeParams:
         diskName: disk-{{ env["deployment"] }}
-        sourceImage: "projects/ubuntu-os-cloud/global/family/ubuntu-1910"
+        sourceImage: "projects/ubuntu-os-cloud/global/images/family/ubuntu-1804-lts"
 
     - deviceName: disk-{{ env["deployment"] }}-data
       boot: false
