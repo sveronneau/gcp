@@ -54,15 +54,15 @@ resources:
               echo UUID=`sudo blkid -s UUID -o value /dev/sdb` /data ext4 discard,defaults,nofail 0 2 | sudo tee -a /etc/fstab
           fi
 
-    serviceAccounts:
-      - email: private-compute-sa@{{ env["project"] }}.iam.gserviceaccount.com
-        scopes:
-        - https://www.googleapis.com/auth/devstorage.read_only
-        - https://www.googleapis.com/auth/logging.write
-        - https://www.googleapis.com/auth/monitoring.write
-        - https://www.googleapis.com/auth/servicecontrol
-        - https://www.googleapis.com/auth/service.management.readonly
-        - https://www.googleapis.com/auth/trace.append
+    #serviceAccounts:
+    #  - email: private-compute-sa@{{ env["project"] }}.iam.gserviceaccount.com
+    #    scopes:
+    #    - https://www.googleapis.com/auth/devstorage.read_only
+    #    - https://www.googleapis.com/auth/logging.write
+    #    - https://www.googleapis.com/auth/monitoring.write
+    #    - https://www.googleapis.com/auth/servicecontrol
+    #    - https://www.googleapis.com/auth/service.management.readonly
+    #    - https://www.googleapis.com/auth/trace.append
 
     disks:
     - deviceName: vm-ds-{{ env["deployment"] }}
@@ -93,12 +93,12 @@ resources:
       #- name: External NAT
       #  type: ONE_TO_ONE_NAT
 
-  accessControl:
-    gcpIamPolicy:
-      bindings:
-      - role: projects/{{ env["project"] }}/roles/tj4h-shared-custom
-        members:
-        - "user:{{ env["username"] }}"
+  #accessControl:
+  #  gcpIamPolicy:
+  #    bindings:
+  #    - role: projects/{{ env["project"] }}/roles/tj4h-shared-custom
+  #      members:
+  #      - "user:{{ env["username"] }}"
 
 # Declare outputs here
 outputs:
