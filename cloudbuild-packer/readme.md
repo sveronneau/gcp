@@ -11,9 +11,14 @@ $ git clone https://github.com/GoogleCloudPlatform/cloud-builders-community
 Go to the directory that has the source code for the packer Docker image:
 
 $ cd cloud-builders-community/packer
+
+
 Build the Docker image via Cloud Build:
 
 $ gcloud builds submit --config cloudbuild.yaml .
+
+
 Remove this temporary directory:
+
 
 $ cd ../.. && rm -rf cloud-builders-community
