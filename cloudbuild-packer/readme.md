@@ -7,6 +7,7 @@ To use Packer from Google Cloud Build, you need to build an image with Packer in
 Clone the cloud-builders-community repo:
 
 $ git clone https://github.com/GoogleCloudPlatform/cloud-builders-community
+
 Go to the directory that has the source code for the packer Docker image:
 
 $ cd cloud-builders-community/packer
