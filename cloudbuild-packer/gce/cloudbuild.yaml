@@ -1,4 +1,7 @@
 steps:
+- name: gcr.io/cloud-builders/gcloud
+  entrypoint: 'bash'
+  args: [ '-c', 'gcloud secrets versions access latest --secret=cloudbuild-sa > secrets.enc' ]
 - name: 'gcr.io/$PROJECT_ID/packer'
   args:
   - build
