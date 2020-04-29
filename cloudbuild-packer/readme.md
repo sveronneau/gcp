@@ -1,18 +1,18 @@
-Quick pipeline to make a golden Debian image via Packer (binary stored in gcr.io)
+Quick pipeline to make a golden image via Packer (binary stored in gcr.io)
 
 PACKER IMAGE
 
-To use Packer from Google Cloud Build, you need to build an image with Packer installed. Thankfully, one already exists for you to use - you just need to add it to your project.
+To use Packer from Google Cloud Build, you need to build an image with Packer installed.
 
-Clone the cloud-builders-community repo:<br>
-$ git clone https://github.com/GoogleCloudPlatform/cloud-builders-community
+From CLOUD SHELL or your local SDK
+
+Clone this repo:<br>
+$ git clone https://github.com/sveronneau/gcp
 
 Go to the directory that has the source code for the packer Docker image:<br>
-$ cd cloud-builders-community/packer
-
+$ cd gcp/cloudbuild-packer
 
 Build the Docker image via Cloud Build:<br>
 $ gcloud builds submit --config cloudbuild.yaml .
 
-Remove this temporary directory:<br>
-$ cd ../.. && rm -rf cloud-builders-community
+This builds the Docker image with packer in it and stores it in GCR.io.  Your next step is to go in the GCE folder and actually create a build trigger that will create the Golden Image.
