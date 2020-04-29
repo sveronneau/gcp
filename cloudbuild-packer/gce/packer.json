@@ -27,6 +27,6 @@
     "project_id": "{{env `PROJECT_ID`}}",
     "region": "northamerica-northeast1",
     "source_image_family": "ubuntu-2004-lts",
-    "zone": "northamerica-northeast1-a"
+    "zone": "northamerica-northeast1-c"
   }
 }
