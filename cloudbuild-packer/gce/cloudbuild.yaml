@@ -1,1 +1,7 @@
-w
+steps:
+- name: 'gcr.io/$PROJECT_ID/packer'
+  args:
+  - build
+  - -var
+  - project_id=$PROJECT_ID
+  - packer.json
