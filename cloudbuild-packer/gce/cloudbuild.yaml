@@ -5,4 +5,4 @@ steps:
   - -var
   - project_id=$PROJECT_ID
   - packer.json
-tags: ['vault-oss-cloud-builders']  
+tags: ['cloud-builders-community']  
