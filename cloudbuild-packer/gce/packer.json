@@ -24,11 +24,9 @@
   "provisioners": [
     {
       "type": "shell",
-      "inline": ["uname -a >> ~/sysinfo.txt"]
-    }
-    {
-      "type": "shell",
-      "inline": ["sudo aptg-get update -y ; sudo apt-get upgrade -y ; wget https://releases.hashicorp.com/vault/1.4.0/vault_1.4.0_linux_amd64.zip -P /usr/bin/ ; unzip /user/bin/vault_1.4.0_linux_amd64.zip"]
+      "inline": [
+        "uname -a >> ~/sysinfo.txt"
+      ]
     }
   ]
 }
