@@ -1,10 +1,11 @@
 steps:
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: 'bash'
-  args: [ '-c', 'gcloud secrets versions access latest --secret=cloudbuild-sa > secrets.enc' ]
+  args: [ '-c', 'gcloud secrets versions access latest --secret=cloudbuild-sa > $HOME/.config/gcloud/application_default_credentials.json' ]
 - name: 'gcr.io/$PROJECT_ID/packer'
   args:
   - build
+  - -debug
   - -var
   - project_id=$PROJECT_ID
   - packer.json
