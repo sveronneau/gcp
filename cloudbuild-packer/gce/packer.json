@@ -10,7 +10,7 @@
       "project_id": "{{user `project_id`}}",
       "region": "{{user `region`}}",
       "source_image_family": "{{user `source_image_family`}}",
-      "ssh_username": "sveronneau",
+      "ssh_username": "root",
       "type": "googlecompute",
       "zone": "{{user `zone`}}"
     }
