@@ -4,13 +4,13 @@
       "disk_size": 25,
       "disk_type": "pd-ssd",
       "image_description": "Vault Base Image",
-      "image_name": "vault-base",
       "image_family": "vault",
+      "image_name": "vault-base",
       "machine_type": "{{user `machine_type`}}",
       "project_id": "{{user `project_id`}}",
       "region": "{{user `region`}}",
       "source_image_family": "{{user `source_image_family`}}",
-      "ssh_username": "root",
+      "ssh_username": "sveronneau",
       "type": "googlecompute",
       "zone": "{{user `zone`}}"
     }
