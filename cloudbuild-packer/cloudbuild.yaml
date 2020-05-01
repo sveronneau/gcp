@@ -6,7 +6,7 @@ steps:
 - name: 'gcr.io/cloud-builders/wget'
   args: ["https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_amd64.zip"]
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-f ./Dockerfile', '-t', 'gcr.io/$PROJECT_ID/packer:${_PACKER_VERSION}',
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/packer:${_PACKER_VERSION}',
         '-t', 'gcr.io/$PROJECT_ID/packer',
         '--build-arg', 'PACKER_VERSION=${_PACKER_VERSION}',
         '--build-arg', 'PACKER_VERSION_SHA256SUM=${_PACKER_VERSION_SHA256SUM}',
