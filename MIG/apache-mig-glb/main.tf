@@ -130,8 +130,8 @@ resource "google_compute_region_autoscaler" "cras" {
   target = "${google_compute_region_instance_group_manager.rmig.self_link}"
 
   autoscaling_policy = {
-    max_replicas    = 5
-    min_replicas    = 3
+    max_replicas    = 10
+    min_replicas    = 2
     cooldown_period = 60
     cpu_utilization {
       target = 0.5
