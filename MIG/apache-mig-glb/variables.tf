@@ -16,7 +16,7 @@ variable "network"      { default =  "default" }
 # Managed Instace Group
 variable "rmig_name"          { default =  "apache-rmig" }
 variable "base_instance_name" { default =  "apache" }
-variable "target_size"        { default =  "3" }
+variable "target_size"        { default =  "5" }
 #
 # Healthcheck
 variable "hc_name" { default = "apache-healthcheck" }
